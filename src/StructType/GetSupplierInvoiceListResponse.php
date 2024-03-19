@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetSupplierInvoiceListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetSupplierInvoiceListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class GetSupplierInvoiceListResponse extends AbstractStructBase
      * - ref: MidocoSupplierInvoiceList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSupplierInvoiceListType[]
      */
-    protected array $MidocoSupplierInvoiceList = [];
+    protected ?array $MidocoSupplierInvoiceList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class GetSupplierInvoiceListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSupplierInvoiceListType[] $midocoSupplierInvoiceList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoSupplierInvoiceList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoSupplierInvoiceList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoSupplierInvoiceList($midocoSupplierInvoiceList)
@@ -46,18 +47,22 @@ class GetSupplierInvoiceListResponse extends AbstractStructBase
      * Get MidocoSupplierInvoiceList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSupplierInvoiceListType[]
      */
-    public function getMidocoSupplierInvoiceList(): array
+    public function getMidocoSupplierInvoiceList(): ?array
     {
         return $this->MidocoSupplierInvoiceList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSupplierInvoiceList method
+     * This method is responsible for validating the value(s) passed to the setMidocoSupplierInvoiceList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSupplierInvoiceList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSupplierInvoiceListForArrayConstraintsFromSetMidocoSupplierInvoiceList(array $values = []): string
+    public static function validateMidocoSupplierInvoiceListForArrayConstraintFromSetMidocoSupplierInvoiceList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getSupplierInvoiceListResponseMidocoSupplierInvoiceListItem) {
@@ -79,10 +84,10 @@ class GetSupplierInvoiceListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSupplierInvoiceListType[] $midocoSupplierInvoiceList
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetSupplierInvoiceListResponse
      */
-    public function setMidocoSupplierInvoiceList(array $midocoSupplierInvoiceList = []): self
+    public function setMidocoSupplierInvoiceList(?array $midocoSupplierInvoiceList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSupplierInvoiceListArrayErrorMessage = self::validateMidocoSupplierInvoiceListForArrayConstraintsFromSetMidocoSupplierInvoiceList($midocoSupplierInvoiceList))) {
+        if ('' !== ($midocoSupplierInvoiceListArrayErrorMessage = self::validateMidocoSupplierInvoiceListForArrayConstraintFromSetMidocoSupplierInvoiceList($midocoSupplierInvoiceList))) {
             throw new InvalidArgumentException($midocoSupplierInvoiceListArrayErrorMessage, __LINE__);
         }
         $this->MidocoSupplierInvoiceList = $midocoSupplierInvoiceList;

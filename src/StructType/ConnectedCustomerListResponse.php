@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ConnectedCustomerListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ConnectedCustomerListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class ConnectedCustomerListResponse extends AbstractStructBase
      * - ref: MidocoConnectedCustomerList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType[]
      */
-    protected array $MidocoConnectedCustomerList = [];
+    protected ?array $MidocoConnectedCustomerList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class ConnectedCustomerListResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType $midocoConnectedCustomerListSums
      */
-    public function __construct(array $midocoConnectedCustomerList = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType $midocoConnectedCustomerListSums = null)
+    public function __construct(?array $midocoConnectedCustomerList = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType $midocoConnectedCustomerListSums = null)
     {
         $this
             ->setMidocoConnectedCustomerList($midocoConnectedCustomerList)
@@ -54,18 +55,22 @@ class ConnectedCustomerListResponse extends AbstractStructBase
      * Get MidocoConnectedCustomerList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType[]
      */
-    public function getMidocoConnectedCustomerList(): array
+    public function getMidocoConnectedCustomerList(): ?array
     {
         return $this->MidocoConnectedCustomerList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoConnectedCustomerList method
+     * This method is responsible for validating the value(s) passed to the setMidocoConnectedCustomerList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoConnectedCustomerList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoConnectedCustomerListForArrayConstraintsFromSetMidocoConnectedCustomerList(array $values = []): string
+    public static function validateMidocoConnectedCustomerListForArrayConstraintFromSetMidocoConnectedCustomerList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $connectedCustomerListResponseMidocoConnectedCustomerListItem) {
@@ -87,10 +92,10 @@ class ConnectedCustomerListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoConnectedCustomerListType[] $midocoConnectedCustomerList
      * @return \Pggns\MidocoApi\Orderlists\StructType\ConnectedCustomerListResponse
      */
-    public function setMidocoConnectedCustomerList(array $midocoConnectedCustomerList = []): self
+    public function setMidocoConnectedCustomerList(?array $midocoConnectedCustomerList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoConnectedCustomerListArrayErrorMessage = self::validateMidocoConnectedCustomerListForArrayConstraintsFromSetMidocoConnectedCustomerList($midocoConnectedCustomerList))) {
+        if ('' !== ($midocoConnectedCustomerListArrayErrorMessage = self::validateMidocoConnectedCustomerListForArrayConstraintFromSetMidocoConnectedCustomerList($midocoConnectedCustomerList))) {
             throw new InvalidArgumentException($midocoConnectedCustomerListArrayErrorMessage, __LINE__);
         }
         $this->MidocoConnectedCustomerList = $midocoConnectedCustomerList;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListBySupplierResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListBySupplierResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListBySupplierResponse extends AbstractStructBase
      * - ref: MidocoSalesListsBySupplier
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType[]
      */
-    protected array $MidocoSalesListsBySupplier = [];
+    protected ?array $MidocoSalesListsBySupplier = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class SalesListBySupplierResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType $salesListsBySupplierSums
      */
-    public function __construct(array $midocoSalesListsBySupplier = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType $salesListsBySupplierSums = null)
+    public function __construct(?array $midocoSalesListsBySupplier = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType $salesListsBySupplierSums = null)
     {
         $this
             ->setMidocoSalesListsBySupplier($midocoSalesListsBySupplier)
@@ -54,18 +55,22 @@ class SalesListBySupplierResponse extends AbstractStructBase
      * Get MidocoSalesListsBySupplier value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType[]
      */
-    public function getMidocoSalesListsBySupplier(): array
+    public function getMidocoSalesListsBySupplier(): ?array
     {
         return $this->MidocoSalesListsBySupplier;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListsBySupplier method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListsBySupplier method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListsBySupplier method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListsBySupplierForArrayConstraintsFromSetMidocoSalesListsBySupplier(array $values = []): string
+    public static function validateMidocoSalesListsBySupplierForArrayConstraintFromSetMidocoSalesListsBySupplier(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListBySupplierResponseMidocoSalesListsBySupplierItem) {
@@ -87,10 +92,10 @@ class SalesListBySupplierResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierType[] $midocoSalesListsBySupplier
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListBySupplierResponse
      */
-    public function setMidocoSalesListsBySupplier(array $midocoSalesListsBySupplier = []): self
+    public function setMidocoSalesListsBySupplier(?array $midocoSalesListsBySupplier = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListsBySupplierArrayErrorMessage = self::validateMidocoSalesListsBySupplierForArrayConstraintsFromSetMidocoSalesListsBySupplier($midocoSalesListsBySupplier))) {
+        if ('' !== ($midocoSalesListsBySupplierArrayErrorMessage = self::validateMidocoSalesListsBySupplierForArrayConstraintFromSetMidocoSalesListsBySupplier($midocoSalesListsBySupplier))) {
             throw new InvalidArgumentException($midocoSalesListsBySupplierArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListsBySupplier = $midocoSalesListsBySupplier;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoABTAListType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoABTAListType extends AbstractStructBase
 {
     /**
@@ -54,6 +55,16 @@ class MidocoABTAListType extends AbstractStructBase
      */
     protected ?string $accountId = null;
     /**
+     * The itemId
+     * @var int|null
+     */
+    protected ?int $itemId = null;
+    /**
+     * The itemParentId
+     * @var int|null
+     */
+    protected ?int $itemParentId = null;
+    /**
      * Constructor method for MidocoABTAListType
      * @uses MidocoABTAListType::setOrderId()
      * @uses MidocoABTAListType::setOrderNo()
@@ -63,6 +74,8 @@ class MidocoABTAListType extends AbstractStructBase
      * @uses MidocoABTAListType::setPax()
      * @uses MidocoABTAListType::setVatAmount()
      * @uses MidocoABTAListType::setAccountId()
+     * @uses MidocoABTAListType::setItemId()
+     * @uses MidocoABTAListType::setItemParentId()
      * @param int $orderId
      * @param int $orderNo
      * @param float $salesInvTotal
@@ -71,8 +84,10 @@ class MidocoABTAListType extends AbstractStructBase
      * @param int $pax
      * @param float $vatAmount
      * @param string $accountId
+     * @param int $itemId
+     * @param int $itemParentId
      */
-    public function __construct(?int $orderId = null, ?int $orderNo = null, ?float $salesInvTotal = null, ?string $section = null, ?string $field = null, ?int $pax = null, ?float $vatAmount = null, ?string $accountId = null)
+    public function __construct(?int $orderId = null, ?int $orderNo = null, ?float $salesInvTotal = null, ?string $section = null, ?string $field = null, ?int $pax = null, ?float $vatAmount = null, ?string $accountId = null, ?int $itemId = null, ?int $itemParentId = null)
     {
         $this
             ->setOrderId($orderId)
@@ -82,7 +97,9 @@ class MidocoABTAListType extends AbstractStructBase
             ->setField($field)
             ->setPax($pax)
             ->setVatAmount($vatAmount)
-            ->setAccountId($accountId);
+            ->setAccountId($accountId)
+            ->setItemId($itemId)
+            ->setItemParentId($itemParentId);
     }
     /**
      * Get orderId value
@@ -265,6 +282,52 @@ class MidocoABTAListType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($accountId, true), gettype($accountId)), __LINE__);
         }
         $this->accountId = $accountId;
+        
+        return $this;
+    }
+    /**
+     * Get itemId value
+     * @return int|null
+     */
+    public function getItemId(): ?int
+    {
+        return $this->itemId;
+    }
+    /**
+     * Set itemId value
+     * @param int $itemId
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoABTAListType
+     */
+    public function setItemId(?int $itemId = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($itemId) && !(is_int($itemId) || ctype_digit($itemId))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($itemId, true), gettype($itemId)), __LINE__);
+        }
+        $this->itemId = $itemId;
+        
+        return $this;
+    }
+    /**
+     * Get itemParentId value
+     * @return int|null
+     */
+    public function getItemParentId(): ?int
+    {
+        return $this->itemParentId;
+    }
+    /**
+     * Set itemParentId value
+     * @param int $itemParentId
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoABTAListType
+     */
+    public function setItemParentId(?int $itemParentId = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($itemParentId) && !(is_int($itemParentId) || ctype_digit($itemParentId))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($itemParentId, true), gettype($itemParentId)), __LINE__);
+        }
+        $this->itemParentId = $itemParentId;
         
         return $this;
     }

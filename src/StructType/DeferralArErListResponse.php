@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DeferralArErListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DeferralArErListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class DeferralArErListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErOutputListType[]
      */
-    protected array $midocoDeferralArErOutputList = [];
+    protected ?array $midocoDeferralArErOutputList = null;
     /**
      * The midocoDeferralArErListSums
      * Meta information extracted from the WSDL
@@ -28,7 +29,7 @@ class DeferralArErListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErListSumsType[]
      */
-    protected array $midocoDeferralArErListSums = [];
+    protected ?array $midocoDeferralArErListSums = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -45,7 +46,7 @@ class DeferralArErListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErListSumsType[] $midocoDeferralArErListSums
      * @param int $noOfResults
      */
-    public function __construct(array $midocoDeferralArErOutputList = [], array $midocoDeferralArErListSums = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoDeferralArErOutputList = null, ?array $midocoDeferralArErListSums = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoDeferralArErOutputList($midocoDeferralArErOutputList)
@@ -56,18 +57,22 @@ class DeferralArErListResponse extends AbstractStructBase
      * Get midocoDeferralArErOutputList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErOutputListType[]
      */
-    public function getMidocoDeferralArErOutputList(): array
+    public function getMidocoDeferralArErOutputList(): ?array
     {
         return $this->midocoDeferralArErOutputList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDeferralArErOutputList method
+     * This method is responsible for validating the value(s) passed to the setMidocoDeferralArErOutputList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDeferralArErOutputList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDeferralArErOutputListForArrayConstraintsFromSetMidocoDeferralArErOutputList(array $values = []): string
+    public static function validateMidocoDeferralArErOutputListForArrayConstraintFromSetMidocoDeferralArErOutputList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $deferralArErListResponseMidocoDeferralArErOutputListItem) {
@@ -89,10 +94,10 @@ class DeferralArErListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErOutputListType[] $midocoDeferralArErOutputList
      * @return \Pggns\MidocoApi\Orderlists\StructType\DeferralArErListResponse
      */
-    public function setMidocoDeferralArErOutputList(array $midocoDeferralArErOutputList = []): self
+    public function setMidocoDeferralArErOutputList(?array $midocoDeferralArErOutputList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDeferralArErOutputListArrayErrorMessage = self::validateMidocoDeferralArErOutputListForArrayConstraintsFromSetMidocoDeferralArErOutputList($midocoDeferralArErOutputList))) {
+        if ('' !== ($midocoDeferralArErOutputListArrayErrorMessage = self::validateMidocoDeferralArErOutputListForArrayConstraintFromSetMidocoDeferralArErOutputList($midocoDeferralArErOutputList))) {
             throw new InvalidArgumentException($midocoDeferralArErOutputListArrayErrorMessage, __LINE__);
         }
         $this->midocoDeferralArErOutputList = $midocoDeferralArErOutputList;
@@ -119,18 +124,22 @@ class DeferralArErListResponse extends AbstractStructBase
      * Get midocoDeferralArErListSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErListSumsType[]
      */
-    public function getMidocoDeferralArErListSums(): array
+    public function getMidocoDeferralArErListSums(): ?array
     {
         return $this->midocoDeferralArErListSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDeferralArErListSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoDeferralArErListSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDeferralArErListSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDeferralArErListSumsForArrayConstraintsFromSetMidocoDeferralArErListSums(array $values = []): string
+    public static function validateMidocoDeferralArErListSumsForArrayConstraintFromSetMidocoDeferralArErListSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $deferralArErListResponseMidocoDeferralArErListSumsItem) {
@@ -152,10 +161,10 @@ class DeferralArErListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralArErListSumsType[] $midocoDeferralArErListSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\DeferralArErListResponse
      */
-    public function setMidocoDeferralArErListSums(array $midocoDeferralArErListSums = []): self
+    public function setMidocoDeferralArErListSums(?array $midocoDeferralArErListSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDeferralArErListSumsArrayErrorMessage = self::validateMidocoDeferralArErListSumsForArrayConstraintsFromSetMidocoDeferralArErListSums($midocoDeferralArErListSums))) {
+        if ('' !== ($midocoDeferralArErListSumsArrayErrorMessage = self::validateMidocoDeferralArErListSumsForArrayConstraintFromSetMidocoDeferralArErListSums($midocoDeferralArErListSums))) {
             throw new InvalidArgumentException($midocoDeferralArErListSumsArrayErrorMessage, __LINE__);
         }
         $this->midocoDeferralArErListSums = $midocoDeferralArErListSums;

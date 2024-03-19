@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for HotelListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class HotelListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class HotelListResponse extends AbstractStructBase
      * - ref: MidocoHotelList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoHotelListType[]
      */
-    protected array $MidocoHotelList = [];
+    protected ?array $MidocoHotelList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class HotelListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoHotelListType[] $midocoHotelList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoHotelList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoHotelList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoHotelList($midocoHotelList)
@@ -46,18 +47,22 @@ class HotelListResponse extends AbstractStructBase
      * Get MidocoHotelList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoHotelListType[]
      */
-    public function getMidocoHotelList(): array
+    public function getMidocoHotelList(): ?array
     {
         return $this->MidocoHotelList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoHotelList method
+     * This method is responsible for validating the value(s) passed to the setMidocoHotelList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoHotelList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoHotelListForArrayConstraintsFromSetMidocoHotelList(array $values = []): string
+    public static function validateMidocoHotelListForArrayConstraintFromSetMidocoHotelList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $hotelListResponseMidocoHotelListItem) {
@@ -79,10 +84,10 @@ class HotelListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoHotelListType[] $midocoHotelList
      * @return \Pggns\MidocoApi\Orderlists\StructType\HotelListResponse
      */
-    public function setMidocoHotelList(array $midocoHotelList = []): self
+    public function setMidocoHotelList(?array $midocoHotelList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoHotelListArrayErrorMessage = self::validateMidocoHotelListForArrayConstraintsFromSetMidocoHotelList($midocoHotelList))) {
+        if ('' !== ($midocoHotelListArrayErrorMessage = self::validateMidocoHotelListForArrayConstraintFromSetMidocoHotelList($midocoHotelList))) {
             throw new InvalidArgumentException($midocoHotelListArrayErrorMessage, __LINE__);
         }
         $this->MidocoHotelList = $midocoHotelList;

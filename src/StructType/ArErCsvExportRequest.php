@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ArErCsvExportRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ArErCsvExportRequest extends AbstractStructBase
 {
     /**
@@ -28,7 +29,7 @@ class ArErCsvExportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoArErOutputListType[]
      */
-    protected array $midocoArErOutputList = [];
+    protected ?array $midocoArErOutputList = null;
     /**
      * The midocoArErListSums
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class ArErCsvExportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoArErListSumsType[]
      */
-    protected array $midocoArErListSums = [];
+    protected ?array $midocoArErListSums = null;
     /**
      * Constructor method for ArErCsvExportRequest
      * @uses ArErCsvExportRequest::setArErListRequest()
@@ -46,7 +47,7 @@ class ArErCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoArErOutputListType[] $midocoArErOutputList
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoArErListSumsType[] $midocoArErListSums
      */
-    public function __construct(?\Pggns\MidocoApi\Orderlists\StructType\ArErListRequest $arErListRequest = null, array $midocoArErOutputList = [], array $midocoArErListSums = [])
+    public function __construct(?\Pggns\MidocoApi\Orderlists\StructType\ArErListRequest $arErListRequest = null, ?array $midocoArErOutputList = null, ?array $midocoArErListSums = null)
     {
         $this
             ->setArErListRequest($arErListRequest)
@@ -76,18 +77,22 @@ class ArErCsvExportRequest extends AbstractStructBase
      * Get midocoArErOutputList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoArErOutputListType[]
      */
-    public function getMidocoArErOutputList(): array
+    public function getMidocoArErOutputList(): ?array
     {
         return $this->midocoArErOutputList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoArErOutputList method
+     * This method is responsible for validating the value(s) passed to the setMidocoArErOutputList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoArErOutputList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoArErOutputListForArrayConstraintsFromSetMidocoArErOutputList(array $values = []): string
+    public static function validateMidocoArErOutputListForArrayConstraintFromSetMidocoArErOutputList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $arErCsvExportRequestMidocoArErOutputListItem) {
@@ -109,10 +114,10 @@ class ArErCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoArErOutputListType[] $midocoArErOutputList
      * @return \Pggns\MidocoApi\Orderlists\StructType\ArErCsvExportRequest
      */
-    public function setMidocoArErOutputList(array $midocoArErOutputList = []): self
+    public function setMidocoArErOutputList(?array $midocoArErOutputList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoArErOutputListArrayErrorMessage = self::validateMidocoArErOutputListForArrayConstraintsFromSetMidocoArErOutputList($midocoArErOutputList))) {
+        if ('' !== ($midocoArErOutputListArrayErrorMessage = self::validateMidocoArErOutputListForArrayConstraintFromSetMidocoArErOutputList($midocoArErOutputList))) {
             throw new InvalidArgumentException($midocoArErOutputListArrayErrorMessage, __LINE__);
         }
         $this->midocoArErOutputList = $midocoArErOutputList;
@@ -139,18 +144,22 @@ class ArErCsvExportRequest extends AbstractStructBase
      * Get midocoArErListSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoArErListSumsType[]
      */
-    public function getMidocoArErListSums(): array
+    public function getMidocoArErListSums(): ?array
     {
         return $this->midocoArErListSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoArErListSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoArErListSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoArErListSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoArErListSumsForArrayConstraintsFromSetMidocoArErListSums(array $values = []): string
+    public static function validateMidocoArErListSumsForArrayConstraintFromSetMidocoArErListSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $arErCsvExportRequestMidocoArErListSumsItem) {
@@ -172,10 +181,10 @@ class ArErCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoArErListSumsType[] $midocoArErListSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\ArErCsvExportRequest
      */
-    public function setMidocoArErListSums(array $midocoArErListSums = []): self
+    public function setMidocoArErListSums(?array $midocoArErListSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoArErListSumsArrayErrorMessage = self::validateMidocoArErListSumsForArrayConstraintsFromSetMidocoArErListSums($midocoArErListSums))) {
+        if ('' !== ($midocoArErListSumsArrayErrorMessage = self::validateMidocoArErListSumsForArrayConstraintFromSetMidocoArErListSums($midocoArErListSums))) {
             throw new InvalidArgumentException($midocoArErListSumsArrayErrorMessage, __LINE__);
         }
         $this->midocoArErListSums = $midocoArErListSums;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetPackageMarginDetailsRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetPackageMarginDetailsRequest extends AbstractStructBase
 {
     /**

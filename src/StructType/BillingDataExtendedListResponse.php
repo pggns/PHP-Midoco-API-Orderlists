@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BillingDataExtendedListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BillingDataExtendedListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataExtendedListType[]
      */
-    protected array $MidocoBillingDataExtendedList = [];
+    protected ?array $MidocoBillingDataExtendedList = null;
     /**
      * The MidocoBillingDataListSums
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType|null
@@ -33,7 +34,7 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[]
      */
-    protected array $CdfTitle = [];
+    protected ?array $CdfTitle = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -52,7 +53,7 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[] $cdfTitle
      * @param int $noOfResults
      */
-    public function __construct(array $midocoBillingDataExtendedList = [], ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType $midocoBillingDataListSums = null, array $cdfTitle = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoBillingDataExtendedList = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType $midocoBillingDataListSums = null, ?array $cdfTitle = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoBillingDataExtendedList($midocoBillingDataExtendedList)
@@ -64,18 +65,22 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * Get MidocoBillingDataExtendedList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataExtendedListType[]
      */
-    public function getMidocoBillingDataExtendedList(): array
+    public function getMidocoBillingDataExtendedList(): ?array
     {
         return $this->MidocoBillingDataExtendedList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingDataExtendedList method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingDataExtendedList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingDataExtendedList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingDataExtendedListForArrayConstraintsFromSetMidocoBillingDataExtendedList(array $values = []): string
+    public static function validateMidocoBillingDataExtendedListForArrayConstraintFromSetMidocoBillingDataExtendedList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingDataExtendedListResponseMidocoBillingDataExtendedListItem) {
@@ -97,10 +102,10 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataExtendedListType[] $midocoBillingDataExtendedList
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingDataExtendedListResponse
      */
-    public function setMidocoBillingDataExtendedList(array $midocoBillingDataExtendedList = []): self
+    public function setMidocoBillingDataExtendedList(?array $midocoBillingDataExtendedList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingDataExtendedListArrayErrorMessage = self::validateMidocoBillingDataExtendedListForArrayConstraintsFromSetMidocoBillingDataExtendedList($midocoBillingDataExtendedList))) {
+        if ('' !== ($midocoBillingDataExtendedListArrayErrorMessage = self::validateMidocoBillingDataExtendedListForArrayConstraintFromSetMidocoBillingDataExtendedList($midocoBillingDataExtendedList))) {
             throw new InvalidArgumentException($midocoBillingDataExtendedListArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingDataExtendedList = $midocoBillingDataExtendedList;
@@ -146,18 +151,22 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * Get CdfTitle value
      * @return \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[]
      */
-    public function getCdfTitle(): array
+    public function getCdfTitle(): ?array
     {
         return $this->CdfTitle;
     }
     /**
-     * This method is responsible for validating the values passed to the setCdfTitle method
+     * This method is responsible for validating the value(s) passed to the setCdfTitle method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCdfTitle method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCdfTitleForArrayConstraintsFromSetCdfTitle(array $values = []): string
+    public static function validateCdfTitleForArrayConstraintFromSetCdfTitle(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingDataExtendedListResponseCdfTitleItem) {
@@ -179,10 +188,10 @@ class BillingDataExtendedListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[] $cdfTitle
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingDataExtendedListResponse
      */
-    public function setCdfTitle(array $cdfTitle = []): self
+    public function setCdfTitle(?array $cdfTitle = null): self
     {
         // validation for constraint: array
-        if ('' !== ($cdfTitleArrayErrorMessage = self::validateCdfTitleForArrayConstraintsFromSetCdfTitle($cdfTitle))) {
+        if ('' !== ($cdfTitleArrayErrorMessage = self::validateCdfTitleForArrayConstraintFromSetCdfTitle($cdfTitle))) {
             throw new InvalidArgumentException($cdfTitleArrayErrorMessage, __LINE__);
         }
         $this->CdfTitle = $cdfTitle;

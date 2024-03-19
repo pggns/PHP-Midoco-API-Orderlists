@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetTTVByProductResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetTTVByProductResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class GetTTVByProductResponse extends AbstractStructBase
      * - ref: MidocoTTVOutput
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoTTVOutput[]
      */
-    protected array $MidocoTTVOutput = [];
+    protected ?array $MidocoTTVOutput = null;
     /**
      * The sumTTV
      * @var float|null
@@ -41,7 +42,7 @@ class GetTTVByProductResponse extends AbstractStructBase
      * @param float $sumTTV
      * @param int $sumPersoncount
      */
-    public function __construct(array $midocoTTVOutput = [], ?float $sumTTV = null, ?int $sumPersoncount = null)
+    public function __construct(?array $midocoTTVOutput = null, ?float $sumTTV = null, ?int $sumPersoncount = null)
     {
         $this
             ->setMidocoTTVOutput($midocoTTVOutput)
@@ -52,18 +53,22 @@ class GetTTVByProductResponse extends AbstractStructBase
      * Get MidocoTTVOutput value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoTTVOutput[]
      */
-    public function getMidocoTTVOutput(): array
+    public function getMidocoTTVOutput(): ?array
     {
         return $this->MidocoTTVOutput;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoTTVOutput method
+     * This method is responsible for validating the value(s) passed to the setMidocoTTVOutput method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoTTVOutput method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoTTVOutputForArrayConstraintsFromSetMidocoTTVOutput(array $values = []): string
+    public static function validateMidocoTTVOutputForArrayConstraintFromSetMidocoTTVOutput(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getTTVByProductResponseMidocoTTVOutputItem) {
@@ -85,10 +90,10 @@ class GetTTVByProductResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoTTVOutput[] $midocoTTVOutput
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetTTVByProductResponse
      */
-    public function setMidocoTTVOutput(array $midocoTTVOutput = []): self
+    public function setMidocoTTVOutput(?array $midocoTTVOutput = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoTTVOutputArrayErrorMessage = self::validateMidocoTTVOutputForArrayConstraintsFromSetMidocoTTVOutput($midocoTTVOutput))) {
+        if ('' !== ($midocoTTVOutputArrayErrorMessage = self::validateMidocoTTVOutputForArrayConstraintFromSetMidocoTTVOutput($midocoTTVOutput))) {
             throw new InvalidArgumentException($midocoTTVOutputArrayErrorMessage, __LINE__);
         }
         $this->MidocoTTVOutput = $midocoTTVOutput;

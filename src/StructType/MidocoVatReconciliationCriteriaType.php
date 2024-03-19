@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoVatReconciliationCriteriaType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoVatReconciliationCriteriaType extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MidocoVatReconciliationCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $vatCode = [];
+    protected ?array $vatCode = null;
     /**
      * The bookingPeriodStart
      * @var int|null
@@ -75,7 +76,7 @@ class MidocoVatReconciliationCriteriaType extends AbstractStructBase
      * @param int $exportId
      * @param int $isExported
      */
-    public function __construct(array $vatCode = [], ?int $bookingPeriodStart = null, ?int $bookingPeriodEnd = null, ?int $bookingYear = null, ?string $receiptDateStart = null, ?string $receiptDateEnd = null, ?int $exportId = null, ?int $isExported = null)
+    public function __construct(?array $vatCode = null, ?int $bookingPeriodStart = null, ?int $bookingPeriodEnd = null, ?int $bookingYear = null, ?string $receiptDateStart = null, ?string $receiptDateEnd = null, ?int $exportId = null, ?int $isExported = null)
     {
         $this
             ->setVatCode($vatCode)
@@ -91,18 +92,22 @@ class MidocoVatReconciliationCriteriaType extends AbstractStructBase
      * Get vatCode value
      * @return string[]
      */
-    public function getVatCode(): array
+    public function getVatCode(): ?array
     {
         return $this->vatCode;
     }
     /**
-     * This method is responsible for validating the values passed to the setVatCode method
+     * This method is responsible for validating the value(s) passed to the setVatCode method
      * This method is willingly generated in order to preserve the one-line inline validation within the setVatCode method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateVatCodeForArrayConstraintsFromSetVatCode(array $values = []): string
+    public static function validateVatCodeForArrayConstraintFromSetVatCode(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoVatReconciliationCriteriaTypeVatCodeItem) {
@@ -124,10 +129,10 @@ class MidocoVatReconciliationCriteriaType extends AbstractStructBase
      * @param string[] $vatCode
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoVatReconciliationCriteriaType
      */
-    public function setVatCode(array $vatCode = []): self
+    public function setVatCode(?array $vatCode = null): self
     {
         // validation for constraint: array
-        if ('' !== ($vatCodeArrayErrorMessage = self::validateVatCodeForArrayConstraintsFromSetVatCode($vatCode))) {
+        if ('' !== ($vatCodeArrayErrorMessage = self::validateVatCodeForArrayConstraintFromSetVatCode($vatCode))) {
             throw new InvalidArgumentException($vatCodeArrayErrorMessage, __LINE__);
         }
         $this->vatCode = $vatCode;

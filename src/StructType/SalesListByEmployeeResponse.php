@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListByEmployeeResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListByEmployeeResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListByEmployeeResponse extends AbstractStructBase
      * - ref: MidocoSalesListsByEmployee
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType[]
      */
-    protected array $MidocoSalesListsByEmployee = [];
+    protected ?array $MidocoSalesListsByEmployee = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class SalesListByEmployeeResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType $salesListsByEmployeeSums
      */
-    public function __construct(array $midocoSalesListsByEmployee = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType $salesListsByEmployeeSums = null)
+    public function __construct(?array $midocoSalesListsByEmployee = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType $salesListsByEmployeeSums = null)
     {
         $this
             ->setMidocoSalesListsByEmployee($midocoSalesListsByEmployee)
@@ -54,18 +55,22 @@ class SalesListByEmployeeResponse extends AbstractStructBase
      * Get MidocoSalesListsByEmployee value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType[]
      */
-    public function getMidocoSalesListsByEmployee(): array
+    public function getMidocoSalesListsByEmployee(): ?array
     {
         return $this->MidocoSalesListsByEmployee;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListsByEmployee method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListsByEmployee method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListsByEmployee method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListsByEmployeeForArrayConstraintsFromSetMidocoSalesListsByEmployee(array $values = []): string
+    public static function validateMidocoSalesListsByEmployeeForArrayConstraintFromSetMidocoSalesListsByEmployee(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListByEmployeeResponseMidocoSalesListsByEmployeeItem) {
@@ -87,10 +92,10 @@ class SalesListByEmployeeResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByEmployeeType[] $midocoSalesListsByEmployee
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListByEmployeeResponse
      */
-    public function setMidocoSalesListsByEmployee(array $midocoSalesListsByEmployee = []): self
+    public function setMidocoSalesListsByEmployee(?array $midocoSalesListsByEmployee = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListsByEmployeeArrayErrorMessage = self::validateMidocoSalesListsByEmployeeForArrayConstraintsFromSetMidocoSalesListsByEmployee($midocoSalesListsByEmployee))) {
+        if ('' !== ($midocoSalesListsByEmployeeArrayErrorMessage = self::validateMidocoSalesListsByEmployeeForArrayConstraintFromSetMidocoSalesListsByEmployee($midocoSalesListsByEmployee))) {
             throw new InvalidArgumentException($midocoSalesListsByEmployeeArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListsByEmployee = $midocoSalesListsByEmployee;

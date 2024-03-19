@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BalanceListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BalanceListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class BalanceListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListType[]
      */
-    protected array $MidocoBalanceList = [];
+    protected ?array $MidocoBalanceList = null;
     /**
      * The MidocoBalanceListSums
      * Meta information extracted from the WSDL
@@ -28,7 +29,7 @@ class BalanceListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListSumsType[]
      */
-    protected array $MidocoBalanceListSums = [];
+    protected ?array $MidocoBalanceListSums = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -45,7 +46,7 @@ class BalanceListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListSumsType[] $midocoBalanceListSums
      * @param int $noOfResults
      */
-    public function __construct(array $midocoBalanceList = [], array $midocoBalanceListSums = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoBalanceList = null, ?array $midocoBalanceListSums = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoBalanceList($midocoBalanceList)
@@ -56,18 +57,22 @@ class BalanceListResponse extends AbstractStructBase
      * Get MidocoBalanceList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListType[]
      */
-    public function getMidocoBalanceList(): array
+    public function getMidocoBalanceList(): ?array
     {
         return $this->MidocoBalanceList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBalanceList method
+     * This method is responsible for validating the value(s) passed to the setMidocoBalanceList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBalanceList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBalanceListForArrayConstraintsFromSetMidocoBalanceList(array $values = []): string
+    public static function validateMidocoBalanceListForArrayConstraintFromSetMidocoBalanceList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $balanceListResponseMidocoBalanceListItem) {
@@ -89,10 +94,10 @@ class BalanceListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListType[] $midocoBalanceList
      * @return \Pggns\MidocoApi\Orderlists\StructType\BalanceListResponse
      */
-    public function setMidocoBalanceList(array $midocoBalanceList = []): self
+    public function setMidocoBalanceList(?array $midocoBalanceList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBalanceListArrayErrorMessage = self::validateMidocoBalanceListForArrayConstraintsFromSetMidocoBalanceList($midocoBalanceList))) {
+        if ('' !== ($midocoBalanceListArrayErrorMessage = self::validateMidocoBalanceListForArrayConstraintFromSetMidocoBalanceList($midocoBalanceList))) {
             throw new InvalidArgumentException($midocoBalanceListArrayErrorMessage, __LINE__);
         }
         $this->MidocoBalanceList = $midocoBalanceList;
@@ -119,18 +124,22 @@ class BalanceListResponse extends AbstractStructBase
      * Get MidocoBalanceListSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListSumsType[]
      */
-    public function getMidocoBalanceListSums(): array
+    public function getMidocoBalanceListSums(): ?array
     {
         return $this->MidocoBalanceListSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBalanceListSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoBalanceListSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBalanceListSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBalanceListSumsForArrayConstraintsFromSetMidocoBalanceListSums(array $values = []): string
+    public static function validateMidocoBalanceListSumsForArrayConstraintFromSetMidocoBalanceListSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $balanceListResponseMidocoBalanceListSumsItem) {
@@ -152,10 +161,10 @@ class BalanceListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBalanceListSumsType[] $midocoBalanceListSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\BalanceListResponse
      */
-    public function setMidocoBalanceListSums(array $midocoBalanceListSums = []): self
+    public function setMidocoBalanceListSums(?array $midocoBalanceListSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBalanceListSumsArrayErrorMessage = self::validateMidocoBalanceListSumsForArrayConstraintsFromSetMidocoBalanceListSums($midocoBalanceListSums))) {
+        if ('' !== ($midocoBalanceListSumsArrayErrorMessage = self::validateMidocoBalanceListSumsForArrayConstraintFromSetMidocoBalanceListSums($midocoBalanceListSums))) {
             throw new InvalidArgumentException($midocoBalanceListSumsArrayErrorMessage, __LINE__);
         }
         $this->MidocoBalanceListSums = $midocoBalanceListSums;

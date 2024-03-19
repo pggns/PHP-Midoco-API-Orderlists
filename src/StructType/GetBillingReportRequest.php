@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetBillingReportRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetBillingReportRequest extends AbstractStructBase
 {
     /**
@@ -30,7 +31,7 @@ class GetBillingReportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var int[]
      */
-    protected array $creationUser = [];
+    protected ?array $creationUser = null;
     /**
      * The paymentType
      * Meta information extracted from the WSDL
@@ -49,7 +50,7 @@ class GetBillingReportRequest extends AbstractStructBase
      * @param int[] $creationUser
      * @param string $paymentType
      */
-    public function __construct(?string $fromReceiptDate = null, ?string $toReceiptDate = null, array $creationUser = [], ?string $paymentType = null)
+    public function __construct(?string $fromReceiptDate = null, ?string $toReceiptDate = null, ?array $creationUser = null, ?string $paymentType = null)
     {
         $this
             ->setFromReceiptDate($fromReceiptDate)
@@ -107,18 +108,22 @@ class GetBillingReportRequest extends AbstractStructBase
      * Get creationUser value
      * @return int[]
      */
-    public function getCreationUser(): array
+    public function getCreationUser(): ?array
     {
         return $this->creationUser;
     }
     /**
-     * This method is responsible for validating the values passed to the setCreationUser method
+     * This method is responsible for validating the value(s) passed to the setCreationUser method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCreationUser method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCreationUserForArrayConstraintsFromSetCreationUser(array $values = []): string
+    public static function validateCreationUserForArrayConstraintFromSetCreationUser(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingReportRequestCreationUserItem) {
@@ -140,10 +145,10 @@ class GetBillingReportRequest extends AbstractStructBase
      * @param int[] $creationUser
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingReportRequest
      */
-    public function setCreationUser(array $creationUser = []): self
+    public function setCreationUser(?array $creationUser = null): self
     {
         // validation for constraint: array
-        if ('' !== ($creationUserArrayErrorMessage = self::validateCreationUserForArrayConstraintsFromSetCreationUser($creationUser))) {
+        if ('' !== ($creationUserArrayErrorMessage = self::validateCreationUserForArrayConstraintFromSetCreationUser($creationUser))) {
             throw new InvalidArgumentException($creationUserArrayErrorMessage, __LINE__);
         }
         $this->creationUser = $creationUser;

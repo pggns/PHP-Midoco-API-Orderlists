@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoSupplierInvoiceListCriteria StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoSupplierInvoiceListCriteria extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MidocoSupplierInvoiceListCriteria extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $orgUnits = [];
+    protected ?array $orgUnits = null;
     /**
      * The createdStart
      * @var string|null
@@ -47,7 +48,7 @@ class MidocoSupplierInvoiceListCriteria extends AbstractStructBase
      * @param string $createdEnd
      * @param int $creationUserId
      */
-    public function __construct(array $orgUnits = [], ?string $createdStart = null, ?string $createdEnd = null, ?int $creationUserId = null)
+    public function __construct(?array $orgUnits = null, ?string $createdStart = null, ?string $createdEnd = null, ?int $creationUserId = null)
     {
         $this
             ->setOrgUnits($orgUnits)
@@ -59,18 +60,22 @@ class MidocoSupplierInvoiceListCriteria extends AbstractStructBase
      * Get orgUnits value
      * @return string[]
      */
-    public function getOrgUnits(): array
+    public function getOrgUnits(): ?array
     {
         return $this->orgUnits;
     }
     /**
-     * This method is responsible for validating the values passed to the setOrgUnits method
+     * This method is responsible for validating the value(s) passed to the setOrgUnits method
      * This method is willingly generated in order to preserve the one-line inline validation within the setOrgUnits method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateOrgUnitsForArrayConstraintsFromSetOrgUnits(array $values = []): string
+    public static function validateOrgUnitsForArrayConstraintFromSetOrgUnits(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoSupplierInvoiceListCriteriaOrgUnitsItem) {
@@ -92,10 +97,10 @@ class MidocoSupplierInvoiceListCriteria extends AbstractStructBase
      * @param string[] $orgUnits
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSupplierInvoiceListCriteria
      */
-    public function setOrgUnits(array $orgUnits = []): self
+    public function setOrgUnits(?array $orgUnits = null): self
     {
         // validation for constraint: array
-        if ('' !== ($orgUnitsArrayErrorMessage = self::validateOrgUnitsForArrayConstraintsFromSetOrgUnits($orgUnits))) {
+        if ('' !== ($orgUnitsArrayErrorMessage = self::validateOrgUnitsForArrayConstraintFromSetOrgUnits($orgUnits))) {
             throw new InvalidArgumentException($orgUnitsArrayErrorMessage, __LINE__);
         }
         $this->orgUnits = $orgUnits;

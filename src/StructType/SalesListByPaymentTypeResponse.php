@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListByPaymentTypeResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListByPaymentTypeResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListByPaymentTypeResponse extends AbstractStructBase
      * - ref: MidocoSalesListByPaymentType
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType[]
      */
-    protected array $MidocoSalesListByPaymentType = [];
+    protected ?array $MidocoSalesListByPaymentType = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class SalesListByPaymentTypeResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType $salesListsByPaymentTypeSums
      */
-    public function __construct(array $midocoSalesListByPaymentType = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType $salesListsByPaymentTypeSums = null)
+    public function __construct(?array $midocoSalesListByPaymentType = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType $salesListsByPaymentTypeSums = null)
     {
         $this
             ->setMidocoSalesListByPaymentType($midocoSalesListByPaymentType)
@@ -54,18 +55,22 @@ class SalesListByPaymentTypeResponse extends AbstractStructBase
      * Get MidocoSalesListByPaymentType value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType[]
      */
-    public function getMidocoSalesListByPaymentType(): array
+    public function getMidocoSalesListByPaymentType(): ?array
     {
         return $this->MidocoSalesListByPaymentType;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListByPaymentType method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListByPaymentType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListByPaymentType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListByPaymentTypeForArrayConstraintsFromSetMidocoSalesListByPaymentType(array $values = []): string
+    public static function validateMidocoSalesListByPaymentTypeForArrayConstraintFromSetMidocoSalesListByPaymentType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListByPaymentTypeResponseMidocoSalesListByPaymentTypeItem) {
@@ -87,10 +92,10 @@ class SalesListByPaymentTypeResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeType[] $midocoSalesListByPaymentType
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListByPaymentTypeResponse
      */
-    public function setMidocoSalesListByPaymentType(array $midocoSalesListByPaymentType = []): self
+    public function setMidocoSalesListByPaymentType(?array $midocoSalesListByPaymentType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListByPaymentTypeArrayErrorMessage = self::validateMidocoSalesListByPaymentTypeForArrayConstraintsFromSetMidocoSalesListByPaymentType($midocoSalesListByPaymentType))) {
+        if ('' !== ($midocoSalesListByPaymentTypeArrayErrorMessage = self::validateMidocoSalesListByPaymentTypeForArrayConstraintFromSetMidocoSalesListByPaymentType($midocoSalesListByPaymentType))) {
             throw new InvalidArgumentException($midocoSalesListByPaymentTypeArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListByPaymentType = $midocoSalesListByPaymentType;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoMarginListCriteriaType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoMarginListCriteriaType extends AbstractStructBase
 {
     /**
@@ -19,7 +20,7 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * - maxOccurs: unbounded
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginIntervalType[]
      */
-    protected array $MidocoMarginInterval = [];
+    protected ?array $MidocoMarginInterval = null;
     /**
      * The orgUnits
      * Meta information extracted from the WSDL
@@ -27,7 +28,7 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $orgUnits = [];
+    protected ?array $orgUnits = null;
     /**
      * The creationDateStart
      * @var string|null
@@ -77,7 +78,7 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * @param bool $includeAgencyCommission
      * @param bool $includeMediatorCommission
      */
-    public function __construct(array $midocoMarginInterval = [], array $orgUnits = [], ?string $creationDateStart = null, ?string $creationDateEnd = null, ?string $travelDateStart = null, ?string $travelDateEnd = null, ?bool $includeAgencyCommission = null, ?bool $includeMediatorCommission = null)
+    public function __construct(?array $midocoMarginInterval = null, ?array $orgUnits = null, ?string $creationDateStart = null, ?string $creationDateEnd = null, ?string $travelDateStart = null, ?string $travelDateEnd = null, ?bool $includeAgencyCommission = null, ?bool $includeMediatorCommission = null)
     {
         $this
             ->setMidocoMarginInterval($midocoMarginInterval)
@@ -93,18 +94,22 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * Get MidocoMarginInterval value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginIntervalType[]
      */
-    public function getMidocoMarginInterval(): array
+    public function getMidocoMarginInterval(): ?array
     {
         return $this->MidocoMarginInterval;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoMarginInterval method
+     * This method is responsible for validating the value(s) passed to the setMidocoMarginInterval method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoMarginInterval method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoMarginIntervalForArrayConstraintsFromSetMidocoMarginInterval(array $values = []): string
+    public static function validateMidocoMarginIntervalForArrayConstraintFromSetMidocoMarginInterval(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoMarginListCriteriaTypeMidocoMarginIntervalItem) {
@@ -126,10 +131,10 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginIntervalType[] $midocoMarginInterval
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListCriteriaType
      */
-    public function setMidocoMarginInterval(array $midocoMarginInterval = []): self
+    public function setMidocoMarginInterval(?array $midocoMarginInterval = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoMarginIntervalArrayErrorMessage = self::validateMidocoMarginIntervalForArrayConstraintsFromSetMidocoMarginInterval($midocoMarginInterval))) {
+        if ('' !== ($midocoMarginIntervalArrayErrorMessage = self::validateMidocoMarginIntervalForArrayConstraintFromSetMidocoMarginInterval($midocoMarginInterval))) {
             throw new InvalidArgumentException($midocoMarginIntervalArrayErrorMessage, __LINE__);
         }
         $this->MidocoMarginInterval = $midocoMarginInterval;
@@ -156,18 +161,22 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * Get orgUnits value
      * @return string[]
      */
-    public function getOrgUnits(): array
+    public function getOrgUnits(): ?array
     {
         return $this->orgUnits;
     }
     /**
-     * This method is responsible for validating the values passed to the setOrgUnits method
+     * This method is responsible for validating the value(s) passed to the setOrgUnits method
      * This method is willingly generated in order to preserve the one-line inline validation within the setOrgUnits method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateOrgUnitsForArrayConstraintsFromSetOrgUnits(array $values = []): string
+    public static function validateOrgUnitsForArrayConstraintFromSetOrgUnits(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoMarginListCriteriaTypeOrgUnitsItem) {
@@ -189,10 +198,10 @@ class MidocoMarginListCriteriaType extends AbstractStructBase
      * @param string[] $orgUnits
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListCriteriaType
      */
-    public function setOrgUnits(array $orgUnits = []): self
+    public function setOrgUnits(?array $orgUnits = null): self
     {
         // validation for constraint: array
-        if ('' !== ($orgUnitsArrayErrorMessage = self::validateOrgUnitsForArrayConstraintsFromSetOrgUnits($orgUnits))) {
+        if ('' !== ($orgUnitsArrayErrorMessage = self::validateOrgUnitsForArrayConstraintFromSetOrgUnits($orgUnits))) {
             throw new InvalidArgumentException($orgUnitsArrayErrorMessage, __LINE__);
         }
         $this->orgUnits = $orgUnits;

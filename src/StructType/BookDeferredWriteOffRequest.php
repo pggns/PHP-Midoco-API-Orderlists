@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BookDeferredWriteOffRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BookDeferredWriteOffRequest extends AbstractStructBase
 {
     /**
@@ -19,13 +20,13 @@ class BookDeferredWriteOffRequest extends AbstractStructBase
      * - maxOccurs: unbounded
      * @var int[]
      */
-    protected array $revenueIds = [];
+    protected ?array $revenueIds = null;
     /**
      * Constructor method for BookDeferredWriteOffRequest
      * @uses BookDeferredWriteOffRequest::setRevenueIds()
      * @param int[] $revenueIds
      */
-    public function __construct(array $revenueIds = [])
+    public function __construct(?array $revenueIds = null)
     {
         $this
             ->setRevenueIds($revenueIds);
@@ -34,18 +35,22 @@ class BookDeferredWriteOffRequest extends AbstractStructBase
      * Get revenueIds value
      * @return int[]
      */
-    public function getRevenueIds(): array
+    public function getRevenueIds(): ?array
     {
         return $this->revenueIds;
     }
     /**
-     * This method is responsible for validating the values passed to the setRevenueIds method
+     * This method is responsible for validating the value(s) passed to the setRevenueIds method
      * This method is willingly generated in order to preserve the one-line inline validation within the setRevenueIds method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateRevenueIdsForArrayConstraintsFromSetRevenueIds(array $values = []): string
+    public static function validateRevenueIdsForArrayConstraintFromSetRevenueIds(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $bookDeferredWriteOffRequestRevenueIdsItem) {
@@ -67,10 +72,10 @@ class BookDeferredWriteOffRequest extends AbstractStructBase
      * @param int[] $revenueIds
      * @return \Pggns\MidocoApi\Orderlists\StructType\BookDeferredWriteOffRequest
      */
-    public function setRevenueIds(array $revenueIds = []): self
+    public function setRevenueIds(?array $revenueIds = null): self
     {
         // validation for constraint: array
-        if ('' !== ($revenueIdsArrayErrorMessage = self::validateRevenueIdsForArrayConstraintsFromSetRevenueIds($revenueIds))) {
+        if ('' !== ($revenueIdsArrayErrorMessage = self::validateRevenueIdsForArrayConstraintFromSetRevenueIds($revenueIds))) {
             throw new InvalidArgumentException($revenueIdsArrayErrorMessage, __LINE__);
         }
         $this->revenueIds = $revenueIds;

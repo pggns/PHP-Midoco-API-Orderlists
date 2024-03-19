@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BillingStatHeaderType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BillingStatHeaderType extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class BillingStatHeaderType extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\HeaderTranslation[]
      */
-    protected array $HeaderTranslation = [];
+    protected ?array $HeaderTranslation = null;
     /**
      * Constructor method for BillingStatHeaderType
      * @uses BillingStatHeaderType::setHeaderTranslation()
      * @param \Pggns\MidocoApi\Orderlists\StructType\HeaderTranslation[] $headerTranslation
      */
-    public function __construct(array $headerTranslation = [])
+    public function __construct(?array $headerTranslation = null)
     {
         $this
             ->setHeaderTranslation($headerTranslation);
@@ -35,18 +36,22 @@ class BillingStatHeaderType extends AbstractStructBase
      * Get HeaderTranslation value
      * @return \Pggns\MidocoApi\Orderlists\StructType\HeaderTranslation[]
      */
-    public function getHeaderTranslation(): array
+    public function getHeaderTranslation(): ?array
     {
         return $this->HeaderTranslation;
     }
     /**
-     * This method is responsible for validating the values passed to the setHeaderTranslation method
+     * This method is responsible for validating the value(s) passed to the setHeaderTranslation method
      * This method is willingly generated in order to preserve the one-line inline validation within the setHeaderTranslation method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateHeaderTranslationForArrayConstraintsFromSetHeaderTranslation(array $values = []): string
+    public static function validateHeaderTranslationForArrayConstraintFromSetHeaderTranslation(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingStatHeaderTypeHeaderTranslationItem) {
@@ -68,10 +73,10 @@ class BillingStatHeaderType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\HeaderTranslation[] $headerTranslation
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingStatHeaderType
      */
-    public function setHeaderTranslation(array $headerTranslation = []): self
+    public function setHeaderTranslation(?array $headerTranslation = null): self
     {
         // validation for constraint: array
-        if ('' !== ($headerTranslationArrayErrorMessage = self::validateHeaderTranslationForArrayConstraintsFromSetHeaderTranslation($headerTranslation))) {
+        if ('' !== ($headerTranslationArrayErrorMessage = self::validateHeaderTranslationForArrayConstraintFromSetHeaderTranslation($headerTranslation))) {
             throw new InvalidArgumentException($headerTranslationArrayErrorMessage, __LINE__);
         }
         $this->HeaderTranslation = $headerTranslation;

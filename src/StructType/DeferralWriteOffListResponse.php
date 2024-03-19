@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DeferralWriteOffListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DeferralWriteOffListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class DeferralWriteOffListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType[]
      */
-    protected array $midocoDeferralWriteOffOutputList = [];
+    protected ?array $midocoDeferralWriteOffOutputList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -35,7 +36,7 @@ class DeferralWriteOffListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType[] $midocoDeferralWriteOffOutputList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoDeferralWriteOffOutputList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoDeferralWriteOffOutputList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoDeferralWriteOffOutputList($midocoDeferralWriteOffOutputList)
@@ -45,18 +46,22 @@ class DeferralWriteOffListResponse extends AbstractStructBase
      * Get midocoDeferralWriteOffOutputList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType[]
      */
-    public function getMidocoDeferralWriteOffOutputList(): array
+    public function getMidocoDeferralWriteOffOutputList(): ?array
     {
         return $this->midocoDeferralWriteOffOutputList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDeferralWriteOffOutputList method
+     * This method is responsible for validating the value(s) passed to the setMidocoDeferralWriteOffOutputList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDeferralWriteOffOutputList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDeferralWriteOffOutputListForArrayConstraintsFromSetMidocoDeferralWriteOffOutputList(array $values = []): string
+    public static function validateMidocoDeferralWriteOffOutputListForArrayConstraintFromSetMidocoDeferralWriteOffOutputList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $deferralWriteOffListResponseMidocoDeferralWriteOffOutputListItem) {
@@ -78,10 +83,10 @@ class DeferralWriteOffListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType[] $midocoDeferralWriteOffOutputList
      * @return \Pggns\MidocoApi\Orderlists\StructType\DeferralWriteOffListResponse
      */
-    public function setMidocoDeferralWriteOffOutputList(array $midocoDeferralWriteOffOutputList = []): self
+    public function setMidocoDeferralWriteOffOutputList(?array $midocoDeferralWriteOffOutputList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDeferralWriteOffOutputListArrayErrorMessage = self::validateMidocoDeferralWriteOffOutputListForArrayConstraintsFromSetMidocoDeferralWriteOffOutputList($midocoDeferralWriteOffOutputList))) {
+        if ('' !== ($midocoDeferralWriteOffOutputListArrayErrorMessage = self::validateMidocoDeferralWriteOffOutputListForArrayConstraintFromSetMidocoDeferralWriteOffOutputList($midocoDeferralWriteOffOutputList))) {
             throw new InvalidArgumentException($midocoDeferralWriteOffOutputListArrayErrorMessage, __LINE__);
         }
         $this->midocoDeferralWriteOffOutputList = $midocoDeferralWriteOffOutputList;

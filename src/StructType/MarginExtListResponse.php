@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MarginExtListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MarginExtListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MarginExtListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginExtListType[]
      */
-    protected array $MidocoMarginExtList = [];
+    protected ?array $MidocoMarginExtList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -35,7 +36,7 @@ class MarginExtListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginExtListType[] $midocoMarginExtList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoMarginExtList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoMarginExtList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoMarginExtList($midocoMarginExtList)
@@ -45,18 +46,22 @@ class MarginExtListResponse extends AbstractStructBase
      * Get MidocoMarginExtList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginExtListType[]
      */
-    public function getMidocoMarginExtList(): array
+    public function getMidocoMarginExtList(): ?array
     {
         return $this->MidocoMarginExtList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoMarginExtList method
+     * This method is responsible for validating the value(s) passed to the setMidocoMarginExtList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoMarginExtList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoMarginExtListForArrayConstraintsFromSetMidocoMarginExtList(array $values = []): string
+    public static function validateMidocoMarginExtListForArrayConstraintFromSetMidocoMarginExtList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $marginExtListResponseMidocoMarginExtListItem) {
@@ -78,10 +83,10 @@ class MarginExtListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginExtListType[] $midocoMarginExtList
      * @return \Pggns\MidocoApi\Orderlists\StructType\MarginExtListResponse
      */
-    public function setMidocoMarginExtList(array $midocoMarginExtList = []): self
+    public function setMidocoMarginExtList(?array $midocoMarginExtList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoMarginExtListArrayErrorMessage = self::validateMidocoMarginExtListForArrayConstraintsFromSetMidocoMarginExtList($midocoMarginExtList))) {
+        if ('' !== ($midocoMarginExtListArrayErrorMessage = self::validateMidocoMarginExtListForArrayConstraintFromSetMidocoMarginExtList($midocoMarginExtList))) {
             throw new InvalidArgumentException($midocoMarginExtListArrayErrorMessage, __LINE__);
         }
         $this->MidocoMarginExtList = $midocoMarginExtList;

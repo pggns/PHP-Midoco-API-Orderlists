@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetBillingStatsCustomerRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetBillingStatsCustomerRequest extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $supplier = [];
+    protected ?array $supplier = null;
     /**
      * The unitName
      * Meta information extracted from the WSDL
@@ -28,7 +29,7 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $unitName = [];
+    protected ?array $unitName = null;
     /**
      * The receiptDateFrom
      * @var string|null
@@ -99,7 +100,7 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * @param int $creationUser
      * @param bool $accrualNonZero
      */
-    public function __construct(array $supplier = [], array $unitName = [], ?string $receiptDateFrom = null, ?string $receiptDateTo = null, ?string $debitorNo = null, ?string $startTravelFrom = null, ?string $startTravelTo = null, ?int $customerId = null, ?int $orderNo = null, ?int $creationUser = null, ?bool $accrualNonZero = null)
+    public function __construct(?array $supplier = null, ?array $unitName = null, ?string $receiptDateFrom = null, ?string $receiptDateTo = null, ?string $debitorNo = null, ?string $startTravelFrom = null, ?string $startTravelTo = null, ?int $customerId = null, ?int $orderNo = null, ?int $creationUser = null, ?bool $accrualNonZero = null)
     {
         $this
             ->setSupplier($supplier)
@@ -118,18 +119,22 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * Get supplier value
      * @return string[]
      */
-    public function getSupplier(): array
+    public function getSupplier(): ?array
     {
         return $this->supplier;
     }
     /**
-     * This method is responsible for validating the values passed to the setSupplier method
+     * This method is responsible for validating the value(s) passed to the setSupplier method
      * This method is willingly generated in order to preserve the one-line inline validation within the setSupplier method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateSupplierForArrayConstraintsFromSetSupplier(array $values = []): string
+    public static function validateSupplierForArrayConstraintFromSetSupplier(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingStatsCustomerRequestSupplierItem) {
@@ -151,10 +156,10 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * @param string[] $supplier
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingStatsCustomerRequest
      */
-    public function setSupplier(array $supplier = []): self
+    public function setSupplier(?array $supplier = null): self
     {
         // validation for constraint: array
-        if ('' !== ($supplierArrayErrorMessage = self::validateSupplierForArrayConstraintsFromSetSupplier($supplier))) {
+        if ('' !== ($supplierArrayErrorMessage = self::validateSupplierForArrayConstraintFromSetSupplier($supplier))) {
             throw new InvalidArgumentException($supplierArrayErrorMessage, __LINE__);
         }
         $this->supplier = $supplier;
@@ -181,18 +186,22 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * Get unitName value
      * @return string[]
      */
-    public function getUnitName(): array
+    public function getUnitName(): ?array
     {
         return $this->unitName;
     }
     /**
-     * This method is responsible for validating the values passed to the setUnitName method
+     * This method is responsible for validating the value(s) passed to the setUnitName method
      * This method is willingly generated in order to preserve the one-line inline validation within the setUnitName method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateUnitNameForArrayConstraintsFromSetUnitName(array $values = []): string
+    public static function validateUnitNameForArrayConstraintFromSetUnitName(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingStatsCustomerRequestUnitNameItem) {
@@ -214,10 +223,10 @@ class GetBillingStatsCustomerRequest extends AbstractStructBase
      * @param string[] $unitName
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingStatsCustomerRequest
      */
-    public function setUnitName(array $unitName = []): self
+    public function setUnitName(?array $unitName = null): self
     {
         // validation for constraint: array
-        if ('' !== ($unitNameArrayErrorMessage = self::validateUnitNameForArrayConstraintsFromSetUnitName($unitName))) {
+        if ('' !== ($unitNameArrayErrorMessage = self::validateUnitNameForArrayConstraintFromSetUnitName($unitName))) {
             throw new InvalidArgumentException($unitNameArrayErrorMessage, __LINE__);
         }
         $this->unitName = $unitName;

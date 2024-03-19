@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetGroupAdvisorInfoResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetGroupAdvisorInfoResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class GetGroupAdvisorInfoResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo[]
      */
-    protected array $GroupAdvisorInfo = [];
+    protected ?array $GroupAdvisorInfo = null;
     /**
      * The GroupAdvisorInfoSum
      * Meta information extracted from the WSDL
@@ -42,7 +43,7 @@ class GetGroupAdvisorInfoResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo $groupAdvisorInfoSum
      * @param int $noOfResults
      */
-    public function __construct(array $groupAdvisorInfo = [], ?\Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo $groupAdvisorInfoSum = null, ?int $noOfResults = null)
+    public function __construct(?array $groupAdvisorInfo = null, ?\Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo $groupAdvisorInfoSum = null, ?int $noOfResults = null)
     {
         $this
             ->setGroupAdvisorInfo($groupAdvisorInfo)
@@ -53,18 +54,22 @@ class GetGroupAdvisorInfoResponse extends AbstractStructBase
      * Get GroupAdvisorInfo value
      * @return \Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo[]
      */
-    public function getGroupAdvisorInfo(): array
+    public function getGroupAdvisorInfo(): ?array
     {
         return $this->GroupAdvisorInfo;
     }
     /**
-     * This method is responsible for validating the values passed to the setGroupAdvisorInfo method
+     * This method is responsible for validating the value(s) passed to the setGroupAdvisorInfo method
      * This method is willingly generated in order to preserve the one-line inline validation within the setGroupAdvisorInfo method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateGroupAdvisorInfoForArrayConstraintsFromSetGroupAdvisorInfo(array $values = []): string
+    public static function validateGroupAdvisorInfoForArrayConstraintFromSetGroupAdvisorInfo(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getGroupAdvisorInfoResponseGroupAdvisorInfoItem) {
@@ -86,10 +91,10 @@ class GetGroupAdvisorInfoResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\GroupAdvisorInfo[] $groupAdvisorInfo
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetGroupAdvisorInfoResponse
      */
-    public function setGroupAdvisorInfo(array $groupAdvisorInfo = []): self
+    public function setGroupAdvisorInfo(?array $groupAdvisorInfo = null): self
     {
         // validation for constraint: array
-        if ('' !== ($groupAdvisorInfoArrayErrorMessage = self::validateGroupAdvisorInfoForArrayConstraintsFromSetGroupAdvisorInfo($groupAdvisorInfo))) {
+        if ('' !== ($groupAdvisorInfoArrayErrorMessage = self::validateGroupAdvisorInfoForArrayConstraintFromSetGroupAdvisorInfo($groupAdvisorInfo))) {
             throw new InvalidArgumentException($groupAdvisorInfoArrayErrorMessage, __LINE__);
         }
         $this->GroupAdvisorInfo = $groupAdvisorInfo;

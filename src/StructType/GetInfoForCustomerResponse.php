@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetInfoForCustomerResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetInfoForCustomerResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class GetInfoForCustomerResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer[]
      */
-    protected array $InfoForCustomer = [];
+    protected ?array $InfoForCustomer = null;
     /**
      * The InfoForCustomerSum
      * Meta information extracted from the WSDL
@@ -42,7 +43,7 @@ class GetInfoForCustomerResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer $infoForCustomerSum
      * @param int $noOfResults
      */
-    public function __construct(array $infoForCustomer = [], ?\Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer $infoForCustomerSum = null, ?int $noOfResults = null)
+    public function __construct(?array $infoForCustomer = null, ?\Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer $infoForCustomerSum = null, ?int $noOfResults = null)
     {
         $this
             ->setInfoForCustomer($infoForCustomer)
@@ -53,18 +54,22 @@ class GetInfoForCustomerResponse extends AbstractStructBase
      * Get InfoForCustomer value
      * @return \Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer[]
      */
-    public function getInfoForCustomer(): array
+    public function getInfoForCustomer(): ?array
     {
         return $this->InfoForCustomer;
     }
     /**
-     * This method is responsible for validating the values passed to the setInfoForCustomer method
+     * This method is responsible for validating the value(s) passed to the setInfoForCustomer method
      * This method is willingly generated in order to preserve the one-line inline validation within the setInfoForCustomer method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateInfoForCustomerForArrayConstraintsFromSetInfoForCustomer(array $values = []): string
+    public static function validateInfoForCustomerForArrayConstraintFromSetInfoForCustomer(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getInfoForCustomerResponseInfoForCustomerItem) {
@@ -86,10 +91,10 @@ class GetInfoForCustomerResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\InfoForCustomer[] $infoForCustomer
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetInfoForCustomerResponse
      */
-    public function setInfoForCustomer(array $infoForCustomer = []): self
+    public function setInfoForCustomer(?array $infoForCustomer = null): self
     {
         // validation for constraint: array
-        if ('' !== ($infoForCustomerArrayErrorMessage = self::validateInfoForCustomerForArrayConstraintsFromSetInfoForCustomer($infoForCustomer))) {
+        if ('' !== ($infoForCustomerArrayErrorMessage = self::validateInfoForCustomerForArrayConstraintFromSetInfoForCustomer($infoForCustomer))) {
             throw new InvalidArgumentException($infoForCustomerArrayErrorMessage, __LINE__);
         }
         $this->InfoForCustomer = $infoForCustomer;

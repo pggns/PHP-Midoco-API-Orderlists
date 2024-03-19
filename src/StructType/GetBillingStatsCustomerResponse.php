@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetBillingStatsCustomerResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetBillingStatsCustomerResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class GetBillingStatsCustomerResponse extends AbstractStructBase
      * - ref: MidocoBillingStatCustomer
      * @var \Pggns\MidocoApi\Orderlists\StructType\BillingStatType[]
      */
-    protected array $MidocoBillingStatCustomer = [];
+    protected ?array $MidocoBillingStatCustomer = null;
     /**
      * The MidocoBillingStatHeader
      * Meta information extracted from the WSDL
@@ -46,7 +47,7 @@ class GetBillingStatsCustomerResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\BillingStatHeaderType $midocoBillingStatHeader
      * @param \Pggns\MidocoApi\Orderlists\StructType\BillingStatType $midocoBillingStatCustomerSum
      */
-    public function __construct(array $midocoBillingStatCustomer = [], ?\Pggns\MidocoApi\Orderlists\StructType\BillingStatHeaderType $midocoBillingStatHeader = null, ?\Pggns\MidocoApi\Orderlists\StructType\BillingStatType $midocoBillingStatCustomerSum = null)
+    public function __construct(?array $midocoBillingStatCustomer = null, ?\Pggns\MidocoApi\Orderlists\StructType\BillingStatHeaderType $midocoBillingStatHeader = null, ?\Pggns\MidocoApi\Orderlists\StructType\BillingStatType $midocoBillingStatCustomerSum = null)
     {
         $this
             ->setMidocoBillingStatCustomer($midocoBillingStatCustomer)
@@ -57,18 +58,22 @@ class GetBillingStatsCustomerResponse extends AbstractStructBase
      * Get MidocoBillingStatCustomer value
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingStatType[]
      */
-    public function getMidocoBillingStatCustomer(): array
+    public function getMidocoBillingStatCustomer(): ?array
     {
         return $this->MidocoBillingStatCustomer;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingStatCustomer method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingStatCustomer method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingStatCustomer method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingStatCustomerForArrayConstraintsFromSetMidocoBillingStatCustomer(array $values = []): string
+    public static function validateMidocoBillingStatCustomerForArrayConstraintFromSetMidocoBillingStatCustomer(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingStatsCustomerResponseMidocoBillingStatCustomerItem) {
@@ -90,10 +95,10 @@ class GetBillingStatsCustomerResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\BillingStatType[] $midocoBillingStatCustomer
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingStatsCustomerResponse
      */
-    public function setMidocoBillingStatCustomer(array $midocoBillingStatCustomer = []): self
+    public function setMidocoBillingStatCustomer(?array $midocoBillingStatCustomer = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingStatCustomerArrayErrorMessage = self::validateMidocoBillingStatCustomerForArrayConstraintsFromSetMidocoBillingStatCustomer($midocoBillingStatCustomer))) {
+        if ('' !== ($midocoBillingStatCustomerArrayErrorMessage = self::validateMidocoBillingStatCustomerForArrayConstraintFromSetMidocoBillingStatCustomer($midocoBillingStatCustomer))) {
             throw new InvalidArgumentException($midocoBillingStatCustomerArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingStatCustomer = $midocoBillingStatCustomer;

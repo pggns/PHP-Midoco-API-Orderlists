@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DepositListCsvExportRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DepositListCsvExportRequest extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[]
      */
-    protected array $midocoDepositList = [];
+    protected ?array $midocoDepositList = null;
     /**
      * The midocoDepositListSums
      * Meta information extracted from the WSDL
@@ -28,7 +29,7 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[]
      */
-    protected array $midocoDepositListSums = [];
+    protected ?array $midocoDepositListSums = null;
     /**
      * The midocoDepositListOverall
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[]
      */
-    protected array $midocoDepositListOverall = [];
+    protected ?array $midocoDepositListOverall = null;
     /**
      * Constructor method for DepositListCsvExportRequest
      * @uses DepositListCsvExportRequest::setMidocoDepositList()
@@ -46,7 +47,7 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[] $midocoDepositListSums
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[] $midocoDepositListOverall
      */
-    public function __construct(array $midocoDepositList = [], array $midocoDepositListSums = [], array $midocoDepositListOverall = [])
+    public function __construct(?array $midocoDepositList = null, ?array $midocoDepositListSums = null, ?array $midocoDepositListOverall = null)
     {
         $this
             ->setMidocoDepositList($midocoDepositList)
@@ -57,18 +58,22 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * Get midocoDepositList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[]
      */
-    public function getMidocoDepositList(): array
+    public function getMidocoDepositList(): ?array
     {
         return $this->midocoDepositList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositList method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListForArrayConstraintsFromSetMidocoDepositList(array $values = []): string
+    public static function validateMidocoDepositListForArrayConstraintFromSetMidocoDepositList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListCsvExportRequestMidocoDepositListItem) {
@@ -90,10 +95,10 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[] $midocoDepositList
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListCsvExportRequest
      */
-    public function setMidocoDepositList(array $midocoDepositList = []): self
+    public function setMidocoDepositList(?array $midocoDepositList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListArrayErrorMessage = self::validateMidocoDepositListForArrayConstraintsFromSetMidocoDepositList($midocoDepositList))) {
+        if ('' !== ($midocoDepositListArrayErrorMessage = self::validateMidocoDepositListForArrayConstraintFromSetMidocoDepositList($midocoDepositList))) {
             throw new InvalidArgumentException($midocoDepositListArrayErrorMessage, __LINE__);
         }
         $this->midocoDepositList = $midocoDepositList;
@@ -120,18 +125,22 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * Get midocoDepositListSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[]
      */
-    public function getMidocoDepositListSums(): array
+    public function getMidocoDepositListSums(): ?array
     {
         return $this->midocoDepositListSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositListSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositListSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositListSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListSumsForArrayConstraintsFromSetMidocoDepositListSums(array $values = []): string
+    public static function validateMidocoDepositListSumsForArrayConstraintFromSetMidocoDepositListSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListCsvExportRequestMidocoDepositListSumsItem) {
@@ -153,10 +162,10 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[] $midocoDepositListSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListCsvExportRequest
      */
-    public function setMidocoDepositListSums(array $midocoDepositListSums = []): self
+    public function setMidocoDepositListSums(?array $midocoDepositListSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListSumsArrayErrorMessage = self::validateMidocoDepositListSumsForArrayConstraintsFromSetMidocoDepositListSums($midocoDepositListSums))) {
+        if ('' !== ($midocoDepositListSumsArrayErrorMessage = self::validateMidocoDepositListSumsForArrayConstraintFromSetMidocoDepositListSums($midocoDepositListSums))) {
             throw new InvalidArgumentException($midocoDepositListSumsArrayErrorMessage, __LINE__);
         }
         $this->midocoDepositListSums = $midocoDepositListSums;
@@ -183,18 +192,22 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * Get midocoDepositListOverall value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[]
      */
-    public function getMidocoDepositListOverall(): array
+    public function getMidocoDepositListOverall(): ?array
     {
         return $this->midocoDepositListOverall;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositListOverall method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositListOverall method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositListOverall method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListOverallForArrayConstraintsFromSetMidocoDepositListOverall(array $values = []): string
+    public static function validateMidocoDepositListOverallForArrayConstraintFromSetMidocoDepositListOverall(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListCsvExportRequestMidocoDepositListOverallItem) {
@@ -216,10 +229,10 @@ class DepositListCsvExportRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[] $midocoDepositListOverall
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListCsvExportRequest
      */
-    public function setMidocoDepositListOverall(array $midocoDepositListOverall = []): self
+    public function setMidocoDepositListOverall(?array $midocoDepositListOverall = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListOverallArrayErrorMessage = self::validateMidocoDepositListOverallForArrayConstraintsFromSetMidocoDepositListOverall($midocoDepositListOverall))) {
+        if ('' !== ($midocoDepositListOverallArrayErrorMessage = self::validateMidocoDepositListOverallForArrayConstraintFromSetMidocoDepositListOverall($midocoDepositListOverall))) {
             throw new InvalidArgumentException($midocoDepositListOverallArrayErrorMessage, __LINE__);
         }
         $this->midocoDepositListOverall = $midocoDepositListOverall;

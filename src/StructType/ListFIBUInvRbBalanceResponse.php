@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ListFIBUInvRbBalanceResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ListFIBUInvRbBalanceResponse extends AbstractStructBase
 {
     /**
@@ -24,7 +25,7 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
      * - ref: FIBUInvRbBalanceLine
      * @var \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType[]
      */
-    protected array $FIBUInvRbBalanceLine = [];
+    protected ?array $FIBUInvRbBalanceLine = null;
     /**
      * The FIBUInvRbBalanceCsvContent
      * Meta information extracted from the WSDL
@@ -42,7 +43,7 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType[] $fIBUInvRbBalanceLine
      * @param string $fIBUInvRbBalanceCsvContent
      */
-    public function __construct(array $fIBUInvRbBalanceLine = [], ?string $fIBUInvRbBalanceCsvContent = null)
+    public function __construct(?array $fIBUInvRbBalanceLine = null, ?string $fIBUInvRbBalanceCsvContent = null)
     {
         $this
             ->setFIBUInvRbBalanceLine($fIBUInvRbBalanceLine)
@@ -50,20 +51,24 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
     }
     /**
      * Get FIBUInvRbBalanceLine value
-     * @return \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType[]
+     * @return \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType[]|null
      */
-    public function getFIBUInvRbBalanceLine(): array
+    public function getFIBUInvRbBalanceLine(): ?array
     {
-        return isset($this->FIBUInvRbBalanceLine) ? $this->FIBUInvRbBalanceLine : null;
+        return $this->FIBUInvRbBalanceLine ?? null;
     }
     /**
-     * This method is responsible for validating the values passed to the setFIBUInvRbBalanceLine method
+     * This method is responsible for validating the value(s) passed to the setFIBUInvRbBalanceLine method
      * This method is willingly generated in order to preserve the one-line inline validation within the setFIBUInvRbBalanceLine method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateFIBUInvRbBalanceLineForArrayConstraintsFromSetFIBUInvRbBalanceLine(array $values = []): string
+    public static function validateFIBUInvRbBalanceLineForArrayConstraintFromSetFIBUInvRbBalanceLine(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $listFIBUInvRbBalanceResponseFIBUInvRbBalanceLineItem) {
@@ -80,13 +85,13 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
         return $message;
     }
     /**
-     * This method is responsible for validating the value passed to the setFIBUInvRbBalanceLine method
+     * This method is responsible for validating the value(s) passed to the setFIBUInvRbBalanceLine method
      * This method is willingly generated in order to preserve the one-line inline validation within the setFIBUInvRbBalanceLine method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateFIBUInvRbBalanceLineForChoiceConstraintsFromSetFIBUInvRbBalanceLine($value): string
+    public function validateFIBUInvRbBalanceLineForChoiceConstraintFromSetFIBUInvRbBalanceLine($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -117,15 +122,19 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType[] $fIBUInvRbBalanceLine
      * @return \Pggns\MidocoApi\Orderlists\StructType\ListFIBUInvRbBalanceResponse
      */
-    public function setFIBUInvRbBalanceLine(array $fIBUInvRbBalanceLine = []): self
+    public function setFIBUInvRbBalanceLine(?array $fIBUInvRbBalanceLine = null): self
     {
         // validation for constraint: array
-        if ('' !== ($fIBUInvRbBalanceLineArrayErrorMessage = self::validateFIBUInvRbBalanceLineForArrayConstraintsFromSetFIBUInvRbBalanceLine($fIBUInvRbBalanceLine))) {
+        if ('' !== ($fIBUInvRbBalanceLineArrayErrorMessage = self::validateFIBUInvRbBalanceLineForArrayConstraintFromSetFIBUInvRbBalanceLine($fIBUInvRbBalanceLine))) {
             throw new InvalidArgumentException($fIBUInvRbBalanceLineArrayErrorMessage, __LINE__);
         }
         // validation for constraint: choice(FIBUInvRbBalanceLine, FIBUInvRbBalanceCsvContent)
-        if ('' !== ($fIBUInvRbBalanceLineChoiceErrorMessage = self::validateFIBUInvRbBalanceLineForChoiceConstraintsFromSetFIBUInvRbBalanceLine($fIBUInvRbBalanceLine))) {
+        if ('' !== ($fIBUInvRbBalanceLineChoiceErrorMessage = self::validateFIBUInvRbBalanceLineForChoiceConstraintFromSetFIBUInvRbBalanceLine($fIBUInvRbBalanceLine))) {
             throw new InvalidArgumentException($fIBUInvRbBalanceLineChoiceErrorMessage, __LINE__);
+        }
+        // validation for constraint: choiceMaxOccurs(1)
+        if (is_array($fIBUInvRbBalanceLine) && count($fIBUInvRbBalanceLine) > 1) {
+            throw new InvalidArgumentException(sprintf('Invalid count of %s, the number of elements contained by the property must be less than or equal to 1', count($fIBUInvRbBalanceLine)), __LINE__);
         }
         if (is_null($fIBUInvRbBalanceLine) || (is_array($fIBUInvRbBalanceLine) && empty($fIBUInvRbBalanceLine))) {
             unset($this->FIBUInvRbBalanceLine);
@@ -136,13 +145,13 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
         return $this;
     }
     /**
-     * This method is responsible for validating the value passed to the addToFIBUInvRbBalanceLine method
+     * This method is responsible for validating the value(s) passed to the addToFIBUInvRbBalanceLine method
      * This method is willingly generated in order to preserve the one-line inline validation within the addToFIBUInvRbBalanceLine method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateItemForChoiceConstraintsFromAddToFIBUInvRbBalanceLine($value): string
+    public function validateItemForChoiceConstraintFromAddToFIBUInvRbBalanceLine($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -176,8 +185,12 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('The FIBUInvRbBalanceLine property can only contain items of type \Pggns\MidocoApi\Orderlists\StructType\FIBUInvRbBalanceLineType, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
         }
         // validation for constraint: choice(FIBUInvRbBalanceLine, FIBUInvRbBalanceCsvContent)
-        if ('' !== ($itemChoiceErrorMessage = self::validateItemForChoiceConstraintsFromAddToFIBUInvRbBalanceLine($item))) {
+        if ('' !== ($itemChoiceErrorMessage = self::validateItemForChoiceConstraintFromAddToFIBUInvRbBalanceLine($item))) {
             throw new InvalidArgumentException($itemChoiceErrorMessage, __LINE__);
+        }
+        // validation for constraint: choiceMaxOccurs(1)
+        if (is_array($this->FIBUInvRbBalanceLine) && count($this->FIBUInvRbBalanceLine) >= 1) {
+            throw new InvalidArgumentException(sprintf('You can\'t add anymore element to this property that already contains %s elements, the number of elements contained by the property must be less than or equal to 1', count($this->FIBUInvRbBalanceLine)), __LINE__);
         }
         $this->FIBUInvRbBalanceLine[] = $item;
         
@@ -189,16 +202,16 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
      */
     public function getFIBUInvRbBalanceCsvContent(): ?string
     {
-        return isset($this->FIBUInvRbBalanceCsvContent) ? $this->FIBUInvRbBalanceCsvContent : null;
+        return $this->FIBUInvRbBalanceCsvContent ?? null;
     }
     /**
-     * This method is responsible for validating the value passed to the setFIBUInvRbBalanceCsvContent method
+     * This method is responsible for validating the value(s) passed to the setFIBUInvRbBalanceCsvContent method
      * This method is willingly generated in order to preserve the one-line inline validation within the setFIBUInvRbBalanceCsvContent method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateFIBUInvRbBalanceCsvContentForChoiceConstraintsFromSetFIBUInvRbBalanceCsvContent($value): string
+    public function validateFIBUInvRbBalanceCsvContentForChoiceConstraintFromSetFIBUInvRbBalanceCsvContent($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -235,7 +248,7 @@ class ListFIBUInvRbBalanceResponse extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($fIBUInvRbBalanceCsvContent, true), gettype($fIBUInvRbBalanceCsvContent)), __LINE__);
         }
         // validation for constraint: choice(FIBUInvRbBalanceLine, FIBUInvRbBalanceCsvContent)
-        if ('' !== ($fIBUInvRbBalanceCsvContentChoiceErrorMessage = self::validateFIBUInvRbBalanceCsvContentForChoiceConstraintsFromSetFIBUInvRbBalanceCsvContent($fIBUInvRbBalanceCsvContent))) {
+        if ('' !== ($fIBUInvRbBalanceCsvContentChoiceErrorMessage = self::validateFIBUInvRbBalanceCsvContentForChoiceConstraintFromSetFIBUInvRbBalanceCsvContent($fIBUInvRbBalanceCsvContent))) {
             throw new InvalidArgumentException($fIBUInvRbBalanceCsvContentChoiceErrorMessage, __LINE__);
         }
         if (is_null($fIBUInvRbBalanceCsvContent) || (is_array($fIBUInvRbBalanceCsvContent) && empty($fIBUInvRbBalanceCsvContent))) {

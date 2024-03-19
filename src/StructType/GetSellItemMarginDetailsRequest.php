@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetSellItemMarginDetailsRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetSellItemMarginDetailsRequest extends AbstractStructBase
 {
     /**

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetAgedDebtorCreditorReportsResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAgedDebtorCreditorReportsResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class GetAgedDebtorCreditorReportsResponse extends AbstractStructBase
      * - ref: MidocoAgedDebtorCreditorReportsPosition
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoAgedDebtorCreditorReportsPosition[]
      */
-    protected array $MidocoAgedDebtorCreditorReportsPosition = [];
+    protected ?array $MidocoAgedDebtorCreditorReportsPosition = null;
     /**
      * The sumPositions
      * @var float|null
@@ -33,7 +34,7 @@ class GetAgedDebtorCreditorReportsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoAgedDebtorCreditorReportsPosition[] $midocoAgedDebtorCreditorReportsPosition
      * @param float $sumPositions
      */
-    public function __construct(array $midocoAgedDebtorCreditorReportsPosition = [], ?float $sumPositions = null)
+    public function __construct(?array $midocoAgedDebtorCreditorReportsPosition = null, ?float $sumPositions = null)
     {
         $this
             ->setMidocoAgedDebtorCreditorReportsPosition($midocoAgedDebtorCreditorReportsPosition)
@@ -43,18 +44,22 @@ class GetAgedDebtorCreditorReportsResponse extends AbstractStructBase
      * Get MidocoAgedDebtorCreditorReportsPosition value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoAgedDebtorCreditorReportsPosition[]
      */
-    public function getMidocoAgedDebtorCreditorReportsPosition(): array
+    public function getMidocoAgedDebtorCreditorReportsPosition(): ?array
     {
         return $this->MidocoAgedDebtorCreditorReportsPosition;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoAgedDebtorCreditorReportsPosition method
+     * This method is responsible for validating the value(s) passed to the setMidocoAgedDebtorCreditorReportsPosition method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoAgedDebtorCreditorReportsPosition method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoAgedDebtorCreditorReportsPositionForArrayConstraintsFromSetMidocoAgedDebtorCreditorReportsPosition(array $values = []): string
+    public static function validateMidocoAgedDebtorCreditorReportsPositionForArrayConstraintFromSetMidocoAgedDebtorCreditorReportsPosition(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAgedDebtorCreditorReportsResponseMidocoAgedDebtorCreditorReportsPositionItem) {
@@ -76,10 +81,10 @@ class GetAgedDebtorCreditorReportsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoAgedDebtorCreditorReportsPosition[] $midocoAgedDebtorCreditorReportsPosition
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetAgedDebtorCreditorReportsResponse
      */
-    public function setMidocoAgedDebtorCreditorReportsPosition(array $midocoAgedDebtorCreditorReportsPosition = []): self
+    public function setMidocoAgedDebtorCreditorReportsPosition(?array $midocoAgedDebtorCreditorReportsPosition = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoAgedDebtorCreditorReportsPositionArrayErrorMessage = self::validateMidocoAgedDebtorCreditorReportsPositionForArrayConstraintsFromSetMidocoAgedDebtorCreditorReportsPosition($midocoAgedDebtorCreditorReportsPosition))) {
+        if ('' !== ($midocoAgedDebtorCreditorReportsPositionArrayErrorMessage = self::validateMidocoAgedDebtorCreditorReportsPositionForArrayConstraintFromSetMidocoAgedDebtorCreditorReportsPosition($midocoAgedDebtorCreditorReportsPosition))) {
             throw new InvalidArgumentException($midocoAgedDebtorCreditorReportsPositionArrayErrorMessage, __LINE__);
         }
         $this->MidocoAgedDebtorCreditorReportsPosition = $midocoAgedDebtorCreditorReportsPosition;

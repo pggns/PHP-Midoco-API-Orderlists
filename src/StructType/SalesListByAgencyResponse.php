@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListByAgencyResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListByAgencyResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListByAgencyResponse extends AbstractStructBase
      * - ref: MidocoSalesListsByAgency
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType[]
      */
-    protected array $MidocoSalesListsByAgency = [];
+    protected ?array $MidocoSalesListsByAgency = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class SalesListByAgencyResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType $salesListsByAgencySums
      */
-    public function __construct(array $midocoSalesListsByAgency = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType $salesListsByAgencySums = null)
+    public function __construct(?array $midocoSalesListsByAgency = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType $salesListsByAgencySums = null)
     {
         $this
             ->setMidocoSalesListsByAgency($midocoSalesListsByAgency)
@@ -54,18 +55,22 @@ class SalesListByAgencyResponse extends AbstractStructBase
      * Get MidocoSalesListsByAgency value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType[]
      */
-    public function getMidocoSalesListsByAgency(): array
+    public function getMidocoSalesListsByAgency(): ?array
     {
         return $this->MidocoSalesListsByAgency;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListsByAgency method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListsByAgency method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListsByAgency method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListsByAgencyForArrayConstraintsFromSetMidocoSalesListsByAgency(array $values = []): string
+    public static function validateMidocoSalesListsByAgencyForArrayConstraintFromSetMidocoSalesListsByAgency(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListByAgencyResponseMidocoSalesListsByAgencyItem) {
@@ -87,10 +92,10 @@ class SalesListByAgencyResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByAgencyType[] $midocoSalesListsByAgency
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListByAgencyResponse
      */
-    public function setMidocoSalesListsByAgency(array $midocoSalesListsByAgency = []): self
+    public function setMidocoSalesListsByAgency(?array $midocoSalesListsByAgency = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListsByAgencyArrayErrorMessage = self::validateMidocoSalesListsByAgencyForArrayConstraintsFromSetMidocoSalesListsByAgency($midocoSalesListsByAgency))) {
+        if ('' !== ($midocoSalesListsByAgencyArrayErrorMessage = self::validateMidocoSalesListsByAgencyForArrayConstraintFromSetMidocoSalesListsByAgency($midocoSalesListsByAgency))) {
             throw new InvalidArgumentException($midocoSalesListsByAgencyArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListsByAgency = $midocoSalesListsByAgency;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoDeferralWriteOffOutputListType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
 {
     /**
@@ -134,6 +135,16 @@ class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
      */
     protected ?string $paymentType = null;
     /**
+     * The isVoided
+     * @var bool|null
+     */
+    protected ?bool $isVoided = null;
+    /**
+     * The isWrittenOff
+     * @var bool|null
+     */
+    protected ?bool $isWrittenOff = null;
+    /**
      * Constructor method for MidocoDeferralWriteOffOutputListType
      * @uses MidocoDeferralWriteOffOutputListType::setOutgoingIncoming()
      * @uses MidocoDeferralWriteOffOutputListType::setBruttoNettoIndicator()
@@ -159,6 +170,8 @@ class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
      * @uses MidocoDeferralWriteOffOutputListType::setReceiptNo()
      * @uses MidocoDeferralWriteOffOutputListType::setName()
      * @uses MidocoDeferralWriteOffOutputListType::setPaymentType()
+     * @uses MidocoDeferralWriteOffOutputListType::setIsVoided()
+     * @uses MidocoDeferralWriteOffOutputListType::setIsWrittenOff()
      * @param string $outgoingIncoming
      * @param string $bruttoNettoIndicator
      * @param string $debitor
@@ -183,8 +196,10 @@ class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
      * @param string $receiptNo
      * @param string $name
      * @param string $paymentType
+     * @param bool $isVoided
+     * @param bool $isWrittenOff
      */
-    public function __construct(?string $outgoingIncoming = null, ?string $bruttoNettoIndicator = null, ?string $debitor = null, ?string $creditor = null, ?string $supplierId = null, ?string $bookingId = null, ?string $crsSystem = null, ?string $orgUnit = null, ?string $startTravel = null, ?string $endTravel = null, ?string $receiptDate = null, ?string $debitAccount = null, ?string $creditAccount = null, ?float $amount = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?int $orderId = null, ?int $orderNo = null, ?int $itemId = null, ?int $revenueId = null, ?string $year = null, ?string $receiptNo = null, ?string $name = null, ?string $paymentType = null)
+    public function __construct(?string $outgoingIncoming = null, ?string $bruttoNettoIndicator = null, ?string $debitor = null, ?string $creditor = null, ?string $supplierId = null, ?string $bookingId = null, ?string $crsSystem = null, ?string $orgUnit = null, ?string $startTravel = null, ?string $endTravel = null, ?string $receiptDate = null, ?string $debitAccount = null, ?string $creditAccount = null, ?float $amount = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?int $orderId = null, ?int $orderNo = null, ?int $itemId = null, ?int $revenueId = null, ?string $year = null, ?string $receiptNo = null, ?string $name = null, ?string $paymentType = null, ?bool $isVoided = null, ?bool $isWrittenOff = null)
     {
         $this
             ->setOutgoingIncoming($outgoingIncoming)
@@ -210,7 +225,9 @@ class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
             ->setYear($year)
             ->setReceiptNo($receiptNo)
             ->setName($name)
-            ->setPaymentType($paymentType);
+            ->setPaymentType($paymentType)
+            ->setIsVoided($isVoided)
+            ->setIsWrittenOff($isWrittenOff);
     }
     /**
      * Get outgoingIncoming value
@@ -761,6 +778,52 @@ class MidocoDeferralWriteOffOutputListType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($paymentType, true), gettype($paymentType)), __LINE__);
         }
         $this->paymentType = $paymentType;
+        
+        return $this;
+    }
+    /**
+     * Get isVoided value
+     * @return bool|null
+     */
+    public function getIsVoided(): ?bool
+    {
+        return $this->isVoided;
+    }
+    /**
+     * Set isVoided value
+     * @param bool $isVoided
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType
+     */
+    public function setIsVoided(?bool $isVoided = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isVoided) && !is_bool($isVoided)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isVoided, true), gettype($isVoided)), __LINE__);
+        }
+        $this->isVoided = $isVoided;
+        
+        return $this;
+    }
+    /**
+     * Get isWrittenOff value
+     * @return bool|null
+     */
+    public function getIsWrittenOff(): ?bool
+    {
+        return $this->isWrittenOff;
+    }
+    /**
+     * Set isWrittenOff value
+     * @param bool $isWrittenOff
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffOutputListType
+     */
+    public function setIsWrittenOff(?bool $isWrittenOff = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isWrittenOff) && !is_bool($isWrittenOff)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isWrittenOff, true), gettype($isWrittenOff)), __LINE__);
+        }
+        $this->isWrittenOff = $isWrittenOff;
         
         return $this;
     }

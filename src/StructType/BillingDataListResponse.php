@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BillingDataListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BillingDataListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class BillingDataListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListType[]
      */
-    protected array $MidocoBillingDataList = [];
+    protected ?array $MidocoBillingDataList = null;
     /**
      * The MidocoBillingDataListSums
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType|null
@@ -33,7 +34,7 @@ class BillingDataListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[]
      */
-    protected array $CdfTitle = [];
+    protected ?array $CdfTitle = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -52,7 +53,7 @@ class BillingDataListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[] $cdfTitle
      * @param int $noOfResults
      */
-    public function __construct(array $midocoBillingDataList = [], ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType $midocoBillingDataListSums = null, array $cdfTitle = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoBillingDataList = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListSumsType $midocoBillingDataListSums = null, ?array $cdfTitle = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoBillingDataList($midocoBillingDataList)
@@ -64,18 +65,22 @@ class BillingDataListResponse extends AbstractStructBase
      * Get MidocoBillingDataList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListType[]
      */
-    public function getMidocoBillingDataList(): array
+    public function getMidocoBillingDataList(): ?array
     {
         return $this->MidocoBillingDataList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingDataList method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingDataList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingDataList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingDataListForArrayConstraintsFromSetMidocoBillingDataList(array $values = []): string
+    public static function validateMidocoBillingDataListForArrayConstraintFromSetMidocoBillingDataList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingDataListResponseMidocoBillingDataListItem) {
@@ -97,10 +102,10 @@ class BillingDataListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingDataListType[] $midocoBillingDataList
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingDataListResponse
      */
-    public function setMidocoBillingDataList(array $midocoBillingDataList = []): self
+    public function setMidocoBillingDataList(?array $midocoBillingDataList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingDataListArrayErrorMessage = self::validateMidocoBillingDataListForArrayConstraintsFromSetMidocoBillingDataList($midocoBillingDataList))) {
+        if ('' !== ($midocoBillingDataListArrayErrorMessage = self::validateMidocoBillingDataListForArrayConstraintFromSetMidocoBillingDataList($midocoBillingDataList))) {
             throw new InvalidArgumentException($midocoBillingDataListArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingDataList = $midocoBillingDataList;
@@ -146,18 +151,22 @@ class BillingDataListResponse extends AbstractStructBase
      * Get CdfTitle value
      * @return \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[]
      */
-    public function getCdfTitle(): array
+    public function getCdfTitle(): ?array
     {
         return $this->CdfTitle;
     }
     /**
-     * This method is responsible for validating the values passed to the setCdfTitle method
+     * This method is responsible for validating the value(s) passed to the setCdfTitle method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCdfTitle method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCdfTitleForArrayConstraintsFromSetCdfTitle(array $values = []): string
+    public static function validateCdfTitleForArrayConstraintFromSetCdfTitle(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingDataListResponseCdfTitleItem) {
@@ -179,10 +188,10 @@ class BillingDataListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CdfTitle[] $cdfTitle
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingDataListResponse
      */
-    public function setCdfTitle(array $cdfTitle = []): self
+    public function setCdfTitle(?array $cdfTitle = null): self
     {
         // validation for constraint: array
-        if ('' !== ($cdfTitleArrayErrorMessage = self::validateCdfTitleForArrayConstraintsFromSetCdfTitle($cdfTitle))) {
+        if ('' !== ($cdfTitleArrayErrorMessage = self::validateCdfTitleForArrayConstraintFromSetCdfTitle($cdfTitle))) {
             throw new InvalidArgumentException($cdfTitleArrayErrorMessage, __LINE__);
         }
         $this->CdfTitle = $cdfTitle;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetBillingBookingJournalsResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetBillingBookingJournalsResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetBillingBookingJournalsResponse extends AbstractStructBase
      * - ref: order:MidocoJournalPosition
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoJournalPosition[]
      */
-    protected array $MidocoJournalPosition = [];
+    protected ?array $MidocoJournalPosition = null;
     /**
      * Constructor method for GetBillingBookingJournalsResponse
      * @uses GetBillingBookingJournalsResponse::setMidocoJournalPosition()
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoJournalPosition[] $midocoJournalPosition
      */
-    public function __construct(array $midocoJournalPosition = [])
+    public function __construct(?array $midocoJournalPosition = null)
     {
         $this
             ->setMidocoJournalPosition($midocoJournalPosition);
@@ -36,18 +37,22 @@ class GetBillingBookingJournalsResponse extends AbstractStructBase
      * Get MidocoJournalPosition value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoJournalPosition[]
      */
-    public function getMidocoJournalPosition(): array
+    public function getMidocoJournalPosition(): ?array
     {
         return $this->MidocoJournalPosition;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoJournalPosition method
+     * This method is responsible for validating the value(s) passed to the setMidocoJournalPosition method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoJournalPosition method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoJournalPositionForArrayConstraintsFromSetMidocoJournalPosition(array $values = []): string
+    public static function validateMidocoJournalPositionForArrayConstraintFromSetMidocoJournalPosition(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingBookingJournalsResponseMidocoJournalPositionItem) {
@@ -69,10 +74,10 @@ class GetBillingBookingJournalsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoJournalPosition[] $midocoJournalPosition
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingBookingJournalsResponse
      */
-    public function setMidocoJournalPosition(array $midocoJournalPosition = []): self
+    public function setMidocoJournalPosition(?array $midocoJournalPosition = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoJournalPositionArrayErrorMessage = self::validateMidocoJournalPositionForArrayConstraintsFromSetMidocoJournalPosition($midocoJournalPosition))) {
+        if ('' !== ($midocoJournalPositionArrayErrorMessage = self::validateMidocoJournalPositionForArrayConstraintFromSetMidocoJournalPosition($midocoJournalPosition))) {
             throw new InvalidArgumentException($midocoJournalPositionArrayErrorMessage, __LINE__);
         }
         $this->MidocoJournalPosition = $midocoJournalPosition;

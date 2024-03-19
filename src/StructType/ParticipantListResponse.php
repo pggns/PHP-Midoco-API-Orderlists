@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ParticipantListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ParticipantListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class ParticipantListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantList[]
      */
-    protected array $MidocoParticipantList = [];
+    protected ?array $MidocoParticipantList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -42,7 +43,7 @@ class ParticipantListResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantListType $participantListSums
      */
-    public function __construct(array $midocoParticipantList = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantListType $participantListSums = null)
+    public function __construct(?array $midocoParticipantList = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantListType $participantListSums = null)
     {
         $this
             ->setMidocoParticipantList($midocoParticipantList)
@@ -53,18 +54,22 @@ class ParticipantListResponse extends AbstractStructBase
      * Get MidocoParticipantList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantList[]
      */
-    public function getMidocoParticipantList(): array
+    public function getMidocoParticipantList(): ?array
     {
         return $this->MidocoParticipantList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoParticipantList method
+     * This method is responsible for validating the value(s) passed to the setMidocoParticipantList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoParticipantList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoParticipantListForArrayConstraintsFromSetMidocoParticipantList(array $values = []): string
+    public static function validateMidocoParticipantListForArrayConstraintFromSetMidocoParticipantList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $participantListResponseMidocoParticipantListItem) {
@@ -86,10 +91,10 @@ class ParticipantListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoParticipantList[] $midocoParticipantList
      * @return \Pggns\MidocoApi\Orderlists\StructType\ParticipantListResponse
      */
-    public function setMidocoParticipantList(array $midocoParticipantList = []): self
+    public function setMidocoParticipantList(?array $midocoParticipantList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoParticipantListArrayErrorMessage = self::validateMidocoParticipantListForArrayConstraintsFromSetMidocoParticipantList($midocoParticipantList))) {
+        if ('' !== ($midocoParticipantListArrayErrorMessage = self::validateMidocoParticipantListForArrayConstraintFromSetMidocoParticipantList($midocoParticipantList))) {
             throw new InvalidArgumentException($midocoParticipantListArrayErrorMessage, __LINE__);
         }
         $this->MidocoParticipantList = $midocoParticipantList;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoArErListCriteriaType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoArErListCriteriaType extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MidocoArErListCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $accountType = [];
+    protected ?array $accountType = null;
     /**
      * The startTravel
      * @var string|null
@@ -117,7 +118,7 @@ class MidocoArErListCriteriaType extends AbstractStructBase
      * @param string $travelUntil
      * @param bool $isSiWithoutEr
      */
-    public function __construct(array $accountType = [], ?string $startTravel = null, ?string $creationDate = null, ?string $type = null, ?string $orgUnits = null, ?string $excludedOrgUnits = null, ?string $accountIdFrom = null, ?string $accountIdTo = null, ?int $orderNo = null, ?string $travelCreationDateFrom = null, ?string $travelCreationDateUntil = null, ?string $travelFrom = null, ?string $travelUntil = null, ?bool $isSiWithoutEr = null)
+    public function __construct(?array $accountType = null, ?string $startTravel = null, ?string $creationDate = null, ?string $type = null, ?string $orgUnits = null, ?string $excludedOrgUnits = null, ?string $accountIdFrom = null, ?string $accountIdTo = null, ?int $orderNo = null, ?string $travelCreationDateFrom = null, ?string $travelCreationDateUntil = null, ?string $travelFrom = null, ?string $travelUntil = null, ?bool $isSiWithoutEr = null)
     {
         $this
             ->setAccountType($accountType)
@@ -139,18 +140,22 @@ class MidocoArErListCriteriaType extends AbstractStructBase
      * Get accountType value
      * @return string[]
      */
-    public function getAccountType(): array
+    public function getAccountType(): ?array
     {
         return $this->accountType;
     }
     /**
-     * This method is responsible for validating the values passed to the setAccountType method
+     * This method is responsible for validating the value(s) passed to the setAccountType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setAccountType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateAccountTypeForArrayConstraintsFromSetAccountType(array $values = []): string
+    public static function validateAccountTypeForArrayConstraintFromSetAccountType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoArErListCriteriaTypeAccountTypeItem) {
@@ -172,10 +177,10 @@ class MidocoArErListCriteriaType extends AbstractStructBase
      * @param string[] $accountType
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoArErListCriteriaType
      */
-    public function setAccountType(array $accountType = []): self
+    public function setAccountType(?array $accountType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($accountTypeArrayErrorMessage = self::validateAccountTypeForArrayConstraintsFromSetAccountType($accountType))) {
+        if ('' !== ($accountTypeArrayErrorMessage = self::validateAccountTypeForArrayConstraintFromSetAccountType($accountType))) {
             throw new InvalidArgumentException($accountTypeArrayErrorMessage, __LINE__);
         }
         $this->accountType = $accountType;

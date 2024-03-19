@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for TransferListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class TransferListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class TransferListResponse extends AbstractStructBase
      * - ref: MidocoTransferList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoTransferListType[]
      */
-    protected array $MidocoTransferList = [];
+    protected ?array $MidocoTransferList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class TransferListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoTransferListType[] $midocoTransferList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoTransferList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoTransferList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoTransferList($midocoTransferList)
@@ -46,18 +47,22 @@ class TransferListResponse extends AbstractStructBase
      * Get MidocoTransferList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoTransferListType[]
      */
-    public function getMidocoTransferList(): array
+    public function getMidocoTransferList(): ?array
     {
         return $this->MidocoTransferList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoTransferList method
+     * This method is responsible for validating the value(s) passed to the setMidocoTransferList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoTransferList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoTransferListForArrayConstraintsFromSetMidocoTransferList(array $values = []): string
+    public static function validateMidocoTransferListForArrayConstraintFromSetMidocoTransferList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $transferListResponseMidocoTransferListItem) {
@@ -79,10 +84,10 @@ class TransferListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoTransferListType[] $midocoTransferList
      * @return \Pggns\MidocoApi\Orderlists\StructType\TransferListResponse
      */
-    public function setMidocoTransferList(array $midocoTransferList = []): self
+    public function setMidocoTransferList(?array $midocoTransferList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoTransferListArrayErrorMessage = self::validateMidocoTransferListForArrayConstraintsFromSetMidocoTransferList($midocoTransferList))) {
+        if ('' !== ($midocoTransferListArrayErrorMessage = self::validateMidocoTransferListForArrayConstraintFromSetMidocoTransferList($midocoTransferList))) {
             throw new InvalidArgumentException($midocoTransferListArrayErrorMessage, __LINE__);
         }
         $this->MidocoTransferList = $midocoTransferList;

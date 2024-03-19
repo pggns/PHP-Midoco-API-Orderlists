@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoDeferralWriteOffListCriteriaType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
 {
     /**
@@ -33,6 +34,16 @@ class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
      * @var string|null
      */
     protected ?string $startTravelTo = null;
+    /**
+     * The bookingYear
+     * @var int|null
+     */
+    protected ?int $bookingYear = null;
+    /**
+     * The bookingMonth
+     * @var int|null
+     */
+    protected ?int $bookingMonth = null;
     /**
      * The orgUnits
      * @var string|null
@@ -74,6 +85,8 @@ class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
      * @uses MidocoDeferralWriteOffListCriteriaType::setBillingDateTo()
      * @uses MidocoDeferralWriteOffListCriteriaType::setStartTravelFrom()
      * @uses MidocoDeferralWriteOffListCriteriaType::setStartTravelTo()
+     * @uses MidocoDeferralWriteOffListCriteriaType::setBookingYear()
+     * @uses MidocoDeferralWriteOffListCriteriaType::setBookingMonth()
      * @uses MidocoDeferralWriteOffListCriteriaType::setOrgUnits()
      * @uses MidocoDeferralWriteOffListCriteriaType::setExpensAccountFrom()
      * @uses MidocoDeferralWriteOffListCriteriaType::setExpensAccountTo()
@@ -85,6 +98,8 @@ class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
      * @param string $billingDateTo
      * @param string $startTravelFrom
      * @param string $startTravelTo
+     * @param int $bookingYear
+     * @param int $bookingMonth
      * @param string $orgUnits
      * @param string $expensAccountFrom
      * @param string $expensAccountTo
@@ -93,13 +108,15 @@ class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
      * @param string $type
      * @param bool $listBookingsWithInvoice
      */
-    public function __construct(?string $billingDateFrom = null, ?string $billingDateTo = null, ?string $startTravelFrom = null, ?string $startTravelTo = null, ?string $orgUnits = null, ?string $expensAccountFrom = null, ?string $expensAccountTo = null, ?string $debitorCreditorFrom = null, ?string $debitorCreditorTo = null, ?string $type = null, ?bool $listBookingsWithInvoice = null)
+    public function __construct(?string $billingDateFrom = null, ?string $billingDateTo = null, ?string $startTravelFrom = null, ?string $startTravelTo = null, ?int $bookingYear = null, ?int $bookingMonth = null, ?string $orgUnits = null, ?string $expensAccountFrom = null, ?string $expensAccountTo = null, ?string $debitorCreditorFrom = null, ?string $debitorCreditorTo = null, ?string $type = null, ?bool $listBookingsWithInvoice = null)
     {
         $this
             ->setBillingDateFrom($billingDateFrom)
             ->setBillingDateTo($billingDateTo)
             ->setStartTravelFrom($startTravelFrom)
             ->setStartTravelTo($startTravelTo)
+            ->setBookingYear($bookingYear)
+            ->setBookingMonth($bookingMonth)
             ->setOrgUnits($orgUnits)
             ->setExpensAccountFrom($expensAccountFrom)
             ->setExpensAccountTo($expensAccountTo)
@@ -197,6 +214,52 @@ class MidocoDeferralWriteOffListCriteriaType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($startTravelTo, true), gettype($startTravelTo)), __LINE__);
         }
         $this->startTravelTo = $startTravelTo;
+        
+        return $this;
+    }
+    /**
+     * Get bookingYear value
+     * @return int|null
+     */
+    public function getBookingYear(): ?int
+    {
+        return $this->bookingYear;
+    }
+    /**
+     * Set bookingYear value
+     * @param int $bookingYear
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffListCriteriaType
+     */
+    public function setBookingYear(?int $bookingYear = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($bookingYear) && !(is_int($bookingYear) || ctype_digit($bookingYear))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($bookingYear, true), gettype($bookingYear)), __LINE__);
+        }
+        $this->bookingYear = $bookingYear;
+        
+        return $this;
+    }
+    /**
+     * Get bookingMonth value
+     * @return int|null
+     */
+    public function getBookingMonth(): ?int
+    {
+        return $this->bookingMonth;
+    }
+    /**
+     * Set bookingMonth value
+     * @param int $bookingMonth
+     * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDeferralWriteOffListCriteriaType
+     */
+    public function setBookingMonth(?int $bookingMonth = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($bookingMonth) && !(is_int($bookingMonth) || ctype_digit($bookingMonth))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($bookingMonth, true), gettype($bookingMonth)), __LINE__);
+        }
+        $this->bookingMonth = $bookingMonth;
         
         return $this;
     }

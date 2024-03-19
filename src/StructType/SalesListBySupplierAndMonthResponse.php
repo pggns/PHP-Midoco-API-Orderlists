@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListBySupplierAndMonthResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListBySupplierAndMonthResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * - ref: MidocoSalesListsBySupplierAndMonth
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[]
      */
-    protected array $MidocoSalesListsBySupplierAndMonth = [];
+    protected ?array $MidocoSalesListsBySupplierAndMonth = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -37,7 +38,7 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * - ref: SalesListsBySupplierAndMonthSums
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[]
      */
-    protected array $SalesListsBySupplierAndMonthSums = [];
+    protected ?array $SalesListsBySupplierAndMonthSums = null;
     /**
      * The allUnitsWereEUR
      * Meta information extracted from the WSDL
@@ -53,7 +54,7 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * - ref: CurrencyRate
      * @var \Pggns\MidocoApi\Orderlists\StructType\CurrencyRateType[]
      */
-    protected array $CurrencyRate = [];
+    protected ?array $CurrencyRate = null;
     /**
      * Constructor method for SalesListBySupplierAndMonthResponse
      * @uses SalesListBySupplierAndMonthResponse::setMidocoSalesListsBySupplierAndMonth()
@@ -67,7 +68,7 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * @param bool $allUnitsWereEUR
      * @param \Pggns\MidocoApi\Orderlists\StructType\CurrencyRateType[] $currencyRate
      */
-    public function __construct(array $midocoSalesListsBySupplierAndMonth = [], ?int $noOfResults = null, array $salesListsBySupplierAndMonthSums = [], ?bool $allUnitsWereEUR = null, array $currencyRate = [])
+    public function __construct(?array $midocoSalesListsBySupplierAndMonth = null, ?int $noOfResults = null, ?array $salesListsBySupplierAndMonthSums = null, ?bool $allUnitsWereEUR = null, ?array $currencyRate = null)
     {
         $this
             ->setMidocoSalesListsBySupplierAndMonth($midocoSalesListsBySupplierAndMonth)
@@ -80,18 +81,22 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * Get MidocoSalesListsBySupplierAndMonth value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[]
      */
-    public function getMidocoSalesListsBySupplierAndMonth(): array
+    public function getMidocoSalesListsBySupplierAndMonth(): ?array
     {
         return $this->MidocoSalesListsBySupplierAndMonth;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListsBySupplierAndMonth method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListsBySupplierAndMonth method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListsBySupplierAndMonth method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListsBySupplierAndMonthForArrayConstraintsFromSetMidocoSalesListsBySupplierAndMonth(array $values = []): string
+    public static function validateMidocoSalesListsBySupplierAndMonthForArrayConstraintFromSetMidocoSalesListsBySupplierAndMonth(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListBySupplierAndMonthResponseMidocoSalesListsBySupplierAndMonthItem) {
@@ -113,10 +118,10 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[] $midocoSalesListsBySupplierAndMonth
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListBySupplierAndMonthResponse
      */
-    public function setMidocoSalesListsBySupplierAndMonth(array $midocoSalesListsBySupplierAndMonth = []): self
+    public function setMidocoSalesListsBySupplierAndMonth(?array $midocoSalesListsBySupplierAndMonth = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListsBySupplierAndMonthArrayErrorMessage = self::validateMidocoSalesListsBySupplierAndMonthForArrayConstraintsFromSetMidocoSalesListsBySupplierAndMonth($midocoSalesListsBySupplierAndMonth))) {
+        if ('' !== ($midocoSalesListsBySupplierAndMonthArrayErrorMessage = self::validateMidocoSalesListsBySupplierAndMonthForArrayConstraintFromSetMidocoSalesListsBySupplierAndMonth($midocoSalesListsBySupplierAndMonth))) {
             throw new InvalidArgumentException($midocoSalesListsBySupplierAndMonthArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListsBySupplierAndMonth = $midocoSalesListsBySupplierAndMonth;
@@ -166,18 +171,22 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * Get SalesListsBySupplierAndMonthSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[]
      */
-    public function getSalesListsBySupplierAndMonthSums(): array
+    public function getSalesListsBySupplierAndMonthSums(): ?array
     {
         return $this->SalesListsBySupplierAndMonthSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setSalesListsBySupplierAndMonthSums method
+     * This method is responsible for validating the value(s) passed to the setSalesListsBySupplierAndMonthSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setSalesListsBySupplierAndMonthSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateSalesListsBySupplierAndMonthSumsForArrayConstraintsFromSetSalesListsBySupplierAndMonthSums(array $values = []): string
+    public static function validateSalesListsBySupplierAndMonthSumsForArrayConstraintFromSetSalesListsBySupplierAndMonthSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListBySupplierAndMonthResponseSalesListsBySupplierAndMonthSumsItem) {
@@ -199,10 +208,10 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsBySupplierAndMonthType[] $salesListsBySupplierAndMonthSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListBySupplierAndMonthResponse
      */
-    public function setSalesListsBySupplierAndMonthSums(array $salesListsBySupplierAndMonthSums = []): self
+    public function setSalesListsBySupplierAndMonthSums(?array $salesListsBySupplierAndMonthSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($salesListsBySupplierAndMonthSumsArrayErrorMessage = self::validateSalesListsBySupplierAndMonthSumsForArrayConstraintsFromSetSalesListsBySupplierAndMonthSums($salesListsBySupplierAndMonthSums))) {
+        if ('' !== ($salesListsBySupplierAndMonthSumsArrayErrorMessage = self::validateSalesListsBySupplierAndMonthSumsForArrayConstraintFromSetSalesListsBySupplierAndMonthSums($salesListsBySupplierAndMonthSums))) {
             throw new InvalidArgumentException($salesListsBySupplierAndMonthSumsArrayErrorMessage, __LINE__);
         }
         $this->SalesListsBySupplierAndMonthSums = $salesListsBySupplierAndMonthSums;
@@ -252,18 +261,22 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * Get CurrencyRate value
      * @return \Pggns\MidocoApi\Orderlists\StructType\CurrencyRateType[]
      */
-    public function getCurrencyRate(): array
+    public function getCurrencyRate(): ?array
     {
         return $this->CurrencyRate;
     }
     /**
-     * This method is responsible for validating the values passed to the setCurrencyRate method
+     * This method is responsible for validating the value(s) passed to the setCurrencyRate method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCurrencyRate method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCurrencyRateForArrayConstraintsFromSetCurrencyRate(array $values = []): string
+    public static function validateCurrencyRateForArrayConstraintFromSetCurrencyRate(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListBySupplierAndMonthResponseCurrencyRateItem) {
@@ -285,10 +298,10 @@ class SalesListBySupplierAndMonthResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CurrencyRateType[] $currencyRate
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListBySupplierAndMonthResponse
      */
-    public function setCurrencyRate(array $currencyRate = []): self
+    public function setCurrencyRate(?array $currencyRate = null): self
     {
         // validation for constraint: array
-        if ('' !== ($currencyRateArrayErrorMessage = self::validateCurrencyRateForArrayConstraintsFromSetCurrencyRate($currencyRate))) {
+        if ('' !== ($currencyRateArrayErrorMessage = self::validateCurrencyRateForArrayConstraintFromSetCurrencyRate($currencyRate))) {
             throw new InvalidArgumentException($currencyRateArrayErrorMessage, __LINE__);
         }
         $this->CurrencyRate = $currencyRate;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetBillingReportResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetBillingReportResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class GetBillingReportResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportType[]
      */
-    protected array $MidocoBillingReport = [];
+    protected ?array $MidocoBillingReport = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -35,7 +36,7 @@ class GetBillingReportResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportSumType[]
      */
-    protected array $MidocoBillingReportSums = [];
+    protected ?array $MidocoBillingReportSums = null;
     /**
      * Constructor method for GetBillingReportResponse
      * @uses GetBillingReportResponse::setMidocoBillingReport()
@@ -45,7 +46,7 @@ class GetBillingReportResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportSumType[] $midocoBillingReportSums
      */
-    public function __construct(array $midocoBillingReport = [], ?int $noOfResults = null, array $midocoBillingReportSums = [])
+    public function __construct(?array $midocoBillingReport = null, ?int $noOfResults = null, ?array $midocoBillingReportSums = null)
     {
         $this
             ->setMidocoBillingReport($midocoBillingReport)
@@ -56,18 +57,22 @@ class GetBillingReportResponse extends AbstractStructBase
      * Get MidocoBillingReport value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportType[]
      */
-    public function getMidocoBillingReport(): array
+    public function getMidocoBillingReport(): ?array
     {
         return $this->MidocoBillingReport;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingReport method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingReport method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingReport method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingReportForArrayConstraintsFromSetMidocoBillingReport(array $values = []): string
+    public static function validateMidocoBillingReportForArrayConstraintFromSetMidocoBillingReport(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingReportResponseMidocoBillingReportItem) {
@@ -89,10 +94,10 @@ class GetBillingReportResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportType[] $midocoBillingReport
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingReportResponse
      */
-    public function setMidocoBillingReport(array $midocoBillingReport = []): self
+    public function setMidocoBillingReport(?array $midocoBillingReport = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingReportArrayErrorMessage = self::validateMidocoBillingReportForArrayConstraintsFromSetMidocoBillingReport($midocoBillingReport))) {
+        if ('' !== ($midocoBillingReportArrayErrorMessage = self::validateMidocoBillingReportForArrayConstraintFromSetMidocoBillingReport($midocoBillingReport))) {
             throw new InvalidArgumentException($midocoBillingReportArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingReport = $midocoBillingReport;
@@ -142,18 +147,22 @@ class GetBillingReportResponse extends AbstractStructBase
      * Get MidocoBillingReportSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportSumType[]
      */
-    public function getMidocoBillingReportSums(): array
+    public function getMidocoBillingReportSums(): ?array
     {
         return $this->MidocoBillingReportSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingReportSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingReportSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingReportSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingReportSumsForArrayConstraintsFromSetMidocoBillingReportSums(array $values = []): string
+    public static function validateMidocoBillingReportSumsForArrayConstraintFromSetMidocoBillingReportSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getBillingReportResponseMidocoBillingReportSumsItem) {
@@ -175,10 +184,10 @@ class GetBillingReportResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingReportSumType[] $midocoBillingReportSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetBillingReportResponse
      */
-    public function setMidocoBillingReportSums(array $midocoBillingReportSums = []): self
+    public function setMidocoBillingReportSums(?array $midocoBillingReportSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingReportSumsArrayErrorMessage = self::validateMidocoBillingReportSumsForArrayConstraintsFromSetMidocoBillingReportSums($midocoBillingReportSums))) {
+        if ('' !== ($midocoBillingReportSumsArrayErrorMessage = self::validateMidocoBillingReportSumsForArrayConstraintFromSetMidocoBillingReportSums($midocoBillingReportSums))) {
             throw new InvalidArgumentException($midocoBillingReportSumsArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingReportSums = $midocoBillingReportSums;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetMidocoCCSaleListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetMidocoCCSaleListResponse extends AbstractStructBase
 {
     /**
@@ -18,9 +19,9 @@ class GetMidocoCCSaleListResponse extends AbstractStructBase
      * Meta information extracted from the WSDL
      * - maxOccurs: unbounded
      * - minOccurs: 0
-     * @var mixed[]
+     * @var string[]
      */
-    protected array $MidocoCCSaleListType = [];
+    protected ?array $MidocoCCSaleListType = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -32,10 +33,10 @@ class GetMidocoCCSaleListResponse extends AbstractStructBase
      * Constructor method for GetMidocoCCSaleListResponse
      * @uses GetMidocoCCSaleListResponse::setMidocoCCSaleListType()
      * @uses GetMidocoCCSaleListResponse::setNoOfResults()
-     * @param mixed[] $midocoCCSaleListType
+     * @param string[] $midocoCCSaleListType
      * @param int $noOfResults
      */
-    public function __construct(array $midocoCCSaleListType = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoCCSaleListType = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoCCSaleListType($midocoCCSaleListType)
@@ -43,30 +44,34 @@ class GetMidocoCCSaleListResponse extends AbstractStructBase
     }
     /**
      * Get MidocoCCSaleListType value
-     * @return mixed[]
+     * @return string[]
      */
-    public function getMidocoCCSaleListType(): array
+    public function getMidocoCCSaleListType(): ?array
     {
         return $this->MidocoCCSaleListType;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoCCSaleListType method
+     * This method is responsible for validating the value(s) passed to the setMidocoCCSaleListType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoCCSaleListType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoCCSaleListTypeForArrayConstraintsFromSetMidocoCCSaleListType(array $values = []): string
+    public static function validateMidocoCCSaleListTypeForArrayConstraintFromSetMidocoCCSaleListType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getMidocoCCSaleListResponseMidocoCCSaleListTypeItem) {
             // validation for constraint: itemType
-            if (false) {
+            if (!is_string($getMidocoCCSaleListResponseMidocoCCSaleListTypeItem)) {
                 $invalidValues[] = is_object($getMidocoCCSaleListResponseMidocoCCSaleListTypeItem) ? get_class($getMidocoCCSaleListResponseMidocoCCSaleListTypeItem) : sprintf('%s(%s)', gettype($getMidocoCCSaleListResponseMidocoCCSaleListTypeItem), var_export($getMidocoCCSaleListResponseMidocoCCSaleListTypeItem, true));
             }
         }
         if (!empty($invalidValues)) {
-            $message = sprintf('The MidocoCCSaleListType property can only contain items of type mixed, %s given', is_object($invalidValues) ? get_class($invalidValues) : (is_array($invalidValues) ? implode(', ', $invalidValues) : gettype($invalidValues)));
+            $message = sprintf('The MidocoCCSaleListType property can only contain items of type string, %s given', is_object($invalidValues) ? get_class($invalidValues) : (is_array($invalidValues) ? implode(', ', $invalidValues) : gettype($invalidValues)));
         }
         unset($invalidValues);
         
@@ -75,13 +80,13 @@ class GetMidocoCCSaleListResponse extends AbstractStructBase
     /**
      * Set MidocoCCSaleListType value
      * @throws InvalidArgumentException
-     * @param mixed[] $midocoCCSaleListType
+     * @param string[] $midocoCCSaleListType
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetMidocoCCSaleListResponse
      */
-    public function setMidocoCCSaleListType(array $midocoCCSaleListType = []): self
+    public function setMidocoCCSaleListType(?array $midocoCCSaleListType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoCCSaleListTypeArrayErrorMessage = self::validateMidocoCCSaleListTypeForArrayConstraintsFromSetMidocoCCSaleListType($midocoCCSaleListType))) {
+        if ('' !== ($midocoCCSaleListTypeArrayErrorMessage = self::validateMidocoCCSaleListTypeForArrayConstraintFromSetMidocoCCSaleListType($midocoCCSaleListType))) {
             throw new InvalidArgumentException($midocoCCSaleListTypeArrayErrorMessage, __LINE__);
         }
         $this->MidocoCCSaleListType = $midocoCCSaleListType;
@@ -91,14 +96,14 @@ class GetMidocoCCSaleListResponse extends AbstractStructBase
     /**
      * Add item to MidocoCCSaleListType value
      * @throws InvalidArgumentException
-     * @param mixed $item
+     * @param string $item
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetMidocoCCSaleListResponse
      */
-    public function addToMidocoCCSaleListType(mixed $item): self
+    public function addToMidocoCCSaleListType(string $item): self
     {
         // validation for constraint: itemType
-        if (false) {
-            throw new InvalidArgumentException(sprintf('The MidocoCCSaleListType property can only contain items of type mixed, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
+        if (!is_string($item)) {
+            throw new InvalidArgumentException(sprintf('The MidocoCCSaleListType property can only contain items of type string, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
         }
         $this->MidocoCCSaleListType[] = $item;
         

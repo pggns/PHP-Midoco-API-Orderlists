@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DepositListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DepositListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class DepositListResponse extends AbstractStructBase
      * - ref: MidocoDepositList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[]
      */
-    protected array $MidocoDepositList = [];
+    protected ?array $MidocoDepositList = null;
     /**
      * The MidocoDepositListSums
      * Meta information extracted from the WSDL
@@ -30,7 +31,7 @@ class DepositListResponse extends AbstractStructBase
      * - ref: MidocoDepositListSums
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[]
      */
-    protected array $MidocoDepositListSums = [];
+    protected ?array $MidocoDepositListSums = null;
     /**
      * The MidocoDepositListOverall
      * Meta information extracted from the WSDL
@@ -39,7 +40,7 @@ class DepositListResponse extends AbstractStructBase
      * - ref: MidocoDepositListOverall
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[]
      */
-    protected array $MidocoDepositListOverall = [];
+    protected ?array $MidocoDepositListOverall = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -58,7 +59,7 @@ class DepositListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[] $midocoDepositListOverall
      * @param int $noOfResults
      */
-    public function __construct(array $midocoDepositList = [], array $midocoDepositListSums = [], array $midocoDepositListOverall = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoDepositList = null, ?array $midocoDepositListSums = null, ?array $midocoDepositListOverall = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoDepositList($midocoDepositList)
@@ -70,18 +71,22 @@ class DepositListResponse extends AbstractStructBase
      * Get MidocoDepositList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[]
      */
-    public function getMidocoDepositList(): array
+    public function getMidocoDepositList(): ?array
     {
         return $this->MidocoDepositList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositList method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListForArrayConstraintsFromSetMidocoDepositList(array $values = []): string
+    public static function validateMidocoDepositListForArrayConstraintFromSetMidocoDepositList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListResponseMidocoDepositListItem) {
@@ -103,10 +108,10 @@ class DepositListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListType[] $midocoDepositList
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListResponse
      */
-    public function setMidocoDepositList(array $midocoDepositList = []): self
+    public function setMidocoDepositList(?array $midocoDepositList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListArrayErrorMessage = self::validateMidocoDepositListForArrayConstraintsFromSetMidocoDepositList($midocoDepositList))) {
+        if ('' !== ($midocoDepositListArrayErrorMessage = self::validateMidocoDepositListForArrayConstraintFromSetMidocoDepositList($midocoDepositList))) {
             throw new InvalidArgumentException($midocoDepositListArrayErrorMessage, __LINE__);
         }
         $this->MidocoDepositList = $midocoDepositList;
@@ -133,18 +138,22 @@ class DepositListResponse extends AbstractStructBase
      * Get MidocoDepositListSums value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[]
      */
-    public function getMidocoDepositListSums(): array
+    public function getMidocoDepositListSums(): ?array
     {
         return $this->MidocoDepositListSums;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositListSums method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositListSums method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositListSums method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListSumsForArrayConstraintsFromSetMidocoDepositListSums(array $values = []): string
+    public static function validateMidocoDepositListSumsForArrayConstraintFromSetMidocoDepositListSums(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListResponseMidocoDepositListSumsItem) {
@@ -166,10 +175,10 @@ class DepositListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListSumsType[] $midocoDepositListSums
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListResponse
      */
-    public function setMidocoDepositListSums(array $midocoDepositListSums = []): self
+    public function setMidocoDepositListSums(?array $midocoDepositListSums = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListSumsArrayErrorMessage = self::validateMidocoDepositListSumsForArrayConstraintsFromSetMidocoDepositListSums($midocoDepositListSums))) {
+        if ('' !== ($midocoDepositListSumsArrayErrorMessage = self::validateMidocoDepositListSumsForArrayConstraintFromSetMidocoDepositListSums($midocoDepositListSums))) {
             throw new InvalidArgumentException($midocoDepositListSumsArrayErrorMessage, __LINE__);
         }
         $this->MidocoDepositListSums = $midocoDepositListSums;
@@ -196,18 +205,22 @@ class DepositListResponse extends AbstractStructBase
      * Get MidocoDepositListOverall value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[]
      */
-    public function getMidocoDepositListOverall(): array
+    public function getMidocoDepositListOverall(): ?array
     {
         return $this->MidocoDepositListOverall;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDepositListOverall method
+     * This method is responsible for validating the value(s) passed to the setMidocoDepositListOverall method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDepositListOverall method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDepositListOverallForArrayConstraintsFromSetMidocoDepositListOverall(array $values = []): string
+    public static function validateMidocoDepositListOverallForArrayConstraintFromSetMidocoDepositListOverall(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $depositListResponseMidocoDepositListOverallItem) {
@@ -229,10 +242,10 @@ class DepositListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoDepositListOverallType[] $midocoDepositListOverall
      * @return \Pggns\MidocoApi\Orderlists\StructType\DepositListResponse
      */
-    public function setMidocoDepositListOverall(array $midocoDepositListOverall = []): self
+    public function setMidocoDepositListOverall(?array $midocoDepositListOverall = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDepositListOverallArrayErrorMessage = self::validateMidocoDepositListOverallForArrayConstraintsFromSetMidocoDepositListOverall($midocoDepositListOverall))) {
+        if ('' !== ($midocoDepositListOverallArrayErrorMessage = self::validateMidocoDepositListOverallForArrayConstraintFromSetMidocoDepositListOverall($midocoDepositListOverall))) {
             throw new InvalidArgumentException($midocoDepositListOverallArrayErrorMessage, __LINE__);
         }
         $this->MidocoDepositListOverall = $midocoDepositListOverall;

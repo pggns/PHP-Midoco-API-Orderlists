@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MarginListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MarginListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MarginListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListType[]
      */
-    protected array $MidocoMarginList = [];
+    protected ?array $MidocoMarginList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -35,7 +36,7 @@ class MarginListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListType[] $midocoMarginList
      * @param int $noOfResults
      */
-    public function __construct(array $midocoMarginList = [], ?int $noOfResults = null)
+    public function __construct(?array $midocoMarginList = null, ?int $noOfResults = null)
     {
         $this
             ->setMidocoMarginList($midocoMarginList)
@@ -45,18 +46,22 @@ class MarginListResponse extends AbstractStructBase
      * Get MidocoMarginList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListType[]
      */
-    public function getMidocoMarginList(): array
+    public function getMidocoMarginList(): ?array
     {
         return $this->MidocoMarginList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoMarginList method
+     * This method is responsible for validating the value(s) passed to the setMidocoMarginList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoMarginList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoMarginListForArrayConstraintsFromSetMidocoMarginList(array $values = []): string
+    public static function validateMidocoMarginListForArrayConstraintFromSetMidocoMarginList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $marginListResponseMidocoMarginListItem) {
@@ -78,10 +83,10 @@ class MarginListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMarginListType[] $midocoMarginList
      * @return \Pggns\MidocoApi\Orderlists\StructType\MarginListResponse
      */
-    public function setMidocoMarginList(array $midocoMarginList = []): self
+    public function setMidocoMarginList(?array $midocoMarginList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoMarginListArrayErrorMessage = self::validateMidocoMarginListForArrayConstraintsFromSetMidocoMarginList($midocoMarginList))) {
+        if ('' !== ($midocoMarginListArrayErrorMessage = self::validateMidocoMarginListForArrayConstraintFromSetMidocoMarginList($midocoMarginList))) {
             throw new InvalidArgumentException($midocoMarginListArrayErrorMessage, __LINE__);
         }
         $this->MidocoMarginList = $midocoMarginList;

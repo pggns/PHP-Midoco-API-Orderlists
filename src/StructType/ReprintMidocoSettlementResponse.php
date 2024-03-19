@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ReprintMidocoSettlementResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ReprintMidocoSettlementResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * - ref: order:MidocoMdcSettlementBillingExt
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoMdcSettlementBillingExtType[]
      */
-    protected array $MidocoMdcSettlementBillingExt = [];
+    protected ?array $MidocoMdcSettlementBillingExt = null;
     /**
      * The CompanyErrorExt
      * Meta information extracted from the WSDL
@@ -30,7 +31,7 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * - ref: order:CompanyErrorExt
      * @var \Pggns\MidocoApi\Orderlists\StructType\CompanyErrorTypeExt[]
      */
-    protected array $CompanyErrorExt = [];
+    protected ?array $CompanyErrorExt = null;
     /**
      * The bytes
      * @var string|null
@@ -45,7 +46,7 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CompanyErrorTypeExt[] $companyErrorExt
      * @param string $bytes
      */
-    public function __construct(array $midocoMdcSettlementBillingExt = [], array $companyErrorExt = [], ?string $bytes = null)
+    public function __construct(?array $midocoMdcSettlementBillingExt = null, ?array $companyErrorExt = null, ?string $bytes = null)
     {
         $this
             ->setMidocoMdcSettlementBillingExt($midocoMdcSettlementBillingExt)
@@ -56,18 +57,22 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * Get MidocoMdcSettlementBillingExt value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoMdcSettlementBillingExtType[]
      */
-    public function getMidocoMdcSettlementBillingExt(): array
+    public function getMidocoMdcSettlementBillingExt(): ?array
     {
         return $this->MidocoMdcSettlementBillingExt;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoMdcSettlementBillingExt method
+     * This method is responsible for validating the value(s) passed to the setMidocoMdcSettlementBillingExt method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoMdcSettlementBillingExt method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoMdcSettlementBillingExtForArrayConstraintsFromSetMidocoMdcSettlementBillingExt(array $values = []): string
+    public static function validateMidocoMdcSettlementBillingExtForArrayConstraintFromSetMidocoMdcSettlementBillingExt(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $reprintMidocoSettlementResponseMidocoMdcSettlementBillingExtItem) {
@@ -89,10 +94,10 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoMdcSettlementBillingExtType[] $midocoMdcSettlementBillingExt
      * @return \Pggns\MidocoApi\Orderlists\StructType\ReprintMidocoSettlementResponse
      */
-    public function setMidocoMdcSettlementBillingExt(array $midocoMdcSettlementBillingExt = []): self
+    public function setMidocoMdcSettlementBillingExt(?array $midocoMdcSettlementBillingExt = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoMdcSettlementBillingExtArrayErrorMessage = self::validateMidocoMdcSettlementBillingExtForArrayConstraintsFromSetMidocoMdcSettlementBillingExt($midocoMdcSettlementBillingExt))) {
+        if ('' !== ($midocoMdcSettlementBillingExtArrayErrorMessage = self::validateMidocoMdcSettlementBillingExtForArrayConstraintFromSetMidocoMdcSettlementBillingExt($midocoMdcSettlementBillingExt))) {
             throw new InvalidArgumentException($midocoMdcSettlementBillingExtArrayErrorMessage, __LINE__);
         }
         $this->MidocoMdcSettlementBillingExt = $midocoMdcSettlementBillingExt;
@@ -119,18 +124,22 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * Get CompanyErrorExt value
      * @return \Pggns\MidocoApi\Orderlists\StructType\CompanyErrorTypeExt[]
      */
-    public function getCompanyErrorExt(): array
+    public function getCompanyErrorExt(): ?array
     {
         return $this->CompanyErrorExt;
     }
     /**
-     * This method is responsible for validating the values passed to the setCompanyErrorExt method
+     * This method is responsible for validating the value(s) passed to the setCompanyErrorExt method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCompanyErrorExt method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCompanyErrorExtForArrayConstraintsFromSetCompanyErrorExt(array $values = []): string
+    public static function validateCompanyErrorExtForArrayConstraintFromSetCompanyErrorExt(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $reprintMidocoSettlementResponseCompanyErrorExtItem) {
@@ -152,10 +161,10 @@ class ReprintMidocoSettlementResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\CompanyErrorTypeExt[] $companyErrorExt
      * @return \Pggns\MidocoApi\Orderlists\StructType\ReprintMidocoSettlementResponse
      */
-    public function setCompanyErrorExt(array $companyErrorExt = []): self
+    public function setCompanyErrorExt(?array $companyErrorExt = null): self
     {
         // validation for constraint: array
-        if ('' !== ($companyErrorExtArrayErrorMessage = self::validateCompanyErrorExtForArrayConstraintsFromSetCompanyErrorExt($companyErrorExt))) {
+        if ('' !== ($companyErrorExtArrayErrorMessage = self::validateCompanyErrorExtForArrayConstraintFromSetCompanyErrorExt($companyErrorExt))) {
             throw new InvalidArgumentException($companyErrorExtArrayErrorMessage, __LINE__);
         }
         $this->CompanyErrorExt = $companyErrorExt;

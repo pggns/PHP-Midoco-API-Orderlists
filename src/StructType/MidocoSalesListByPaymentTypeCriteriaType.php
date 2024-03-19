@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoSalesListByPaymentTypeCriteriaType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $paymentType = [];
+    protected ?array $paymentType = null;
     /**
      * The paymentMethod
      * Meta information extracted from the WSDL
@@ -28,7 +29,7 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $paymentMethod = [];
+    protected ?array $paymentMethod = null;
     /**
      * The ccCardType
      * Meta information extracted from the WSDL
@@ -36,7 +37,7 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $ccCardType = [];
+    protected ?array $ccCardType = null;
     /**
      * The orgUnitName
      * Meta information extracted from the WSDL
@@ -44,7 +45,7 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $orgUnitName = [];
+    protected ?array $orgUnitName = null;
     /**
      * The receiptStartDate
      * @var string|null
@@ -77,7 +78,7 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * @param string $receiptEndDate
      * @param int $employee
      */
-    public function __construct(array $paymentType = [], array $paymentMethod = [], array $ccCardType = [], array $orgUnitName = [], ?string $receiptStartDate = null, ?string $receiptEndDate = null, ?int $employee = null)
+    public function __construct(?array $paymentType = null, ?array $paymentMethod = null, ?array $ccCardType = null, ?array $orgUnitName = null, ?string $receiptStartDate = null, ?string $receiptEndDate = null, ?int $employee = null)
     {
         $this
             ->setPaymentType($paymentType)
@@ -92,18 +93,22 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * Get paymentType value
      * @return string[]
      */
-    public function getPaymentType(): array
+    public function getPaymentType(): ?array
     {
         return $this->paymentType;
     }
     /**
-     * This method is responsible for validating the values passed to the setPaymentType method
+     * This method is responsible for validating the value(s) passed to the setPaymentType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setPaymentType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validatePaymentTypeForArrayConstraintsFromSetPaymentType(array $values = []): string
+    public static function validatePaymentTypeForArrayConstraintFromSetPaymentType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoSalesListByPaymentTypeCriteriaTypePaymentTypeItem) {
@@ -125,10 +130,10 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * @param string[] $paymentType
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeCriteriaType
      */
-    public function setPaymentType(array $paymentType = []): self
+    public function setPaymentType(?array $paymentType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($paymentTypeArrayErrorMessage = self::validatePaymentTypeForArrayConstraintsFromSetPaymentType($paymentType))) {
+        if ('' !== ($paymentTypeArrayErrorMessage = self::validatePaymentTypeForArrayConstraintFromSetPaymentType($paymentType))) {
             throw new InvalidArgumentException($paymentTypeArrayErrorMessage, __LINE__);
         }
         $this->paymentType = $paymentType;
@@ -155,18 +160,22 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * Get paymentMethod value
      * @return string[]
      */
-    public function getPaymentMethod(): array
+    public function getPaymentMethod(): ?array
     {
         return $this->paymentMethod;
     }
     /**
-     * This method is responsible for validating the values passed to the setPaymentMethod method
+     * This method is responsible for validating the value(s) passed to the setPaymentMethod method
      * This method is willingly generated in order to preserve the one-line inline validation within the setPaymentMethod method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validatePaymentMethodForArrayConstraintsFromSetPaymentMethod(array $values = []): string
+    public static function validatePaymentMethodForArrayConstraintFromSetPaymentMethod(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoSalesListByPaymentTypeCriteriaTypePaymentMethodItem) {
@@ -188,10 +197,10 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * @param string[] $paymentMethod
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeCriteriaType
      */
-    public function setPaymentMethod(array $paymentMethod = []): self
+    public function setPaymentMethod(?array $paymentMethod = null): self
     {
         // validation for constraint: array
-        if ('' !== ($paymentMethodArrayErrorMessage = self::validatePaymentMethodForArrayConstraintsFromSetPaymentMethod($paymentMethod))) {
+        if ('' !== ($paymentMethodArrayErrorMessage = self::validatePaymentMethodForArrayConstraintFromSetPaymentMethod($paymentMethod))) {
             throw new InvalidArgumentException($paymentMethodArrayErrorMessage, __LINE__);
         }
         $this->paymentMethod = $paymentMethod;
@@ -218,18 +227,22 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * Get ccCardType value
      * @return string[]
      */
-    public function getCcCardType(): array
+    public function getCcCardType(): ?array
     {
         return $this->ccCardType;
     }
     /**
-     * This method is responsible for validating the values passed to the setCcCardType method
+     * This method is responsible for validating the value(s) passed to the setCcCardType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCcCardType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCcCardTypeForArrayConstraintsFromSetCcCardType(array $values = []): string
+    public static function validateCcCardTypeForArrayConstraintFromSetCcCardType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoSalesListByPaymentTypeCriteriaTypeCcCardTypeItem) {
@@ -251,10 +264,10 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * @param string[] $ccCardType
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeCriteriaType
      */
-    public function setCcCardType(array $ccCardType = []): self
+    public function setCcCardType(?array $ccCardType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($ccCardTypeArrayErrorMessage = self::validateCcCardTypeForArrayConstraintsFromSetCcCardType($ccCardType))) {
+        if ('' !== ($ccCardTypeArrayErrorMessage = self::validateCcCardTypeForArrayConstraintFromSetCcCardType($ccCardType))) {
             throw new InvalidArgumentException($ccCardTypeArrayErrorMessage, __LINE__);
         }
         $this->ccCardType = $ccCardType;
@@ -281,18 +294,22 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * Get orgUnitName value
      * @return string[]
      */
-    public function getOrgUnitName(): array
+    public function getOrgUnitName(): ?array
     {
         return $this->orgUnitName;
     }
     /**
-     * This method is responsible for validating the values passed to the setOrgUnitName method
+     * This method is responsible for validating the value(s) passed to the setOrgUnitName method
      * This method is willingly generated in order to preserve the one-line inline validation within the setOrgUnitName method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateOrgUnitNameForArrayConstraintsFromSetOrgUnitName(array $values = []): string
+    public static function validateOrgUnitNameForArrayConstraintFromSetOrgUnitName(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoSalesListByPaymentTypeCriteriaTypeOrgUnitNameItem) {
@@ -314,10 +331,10 @@ class MidocoSalesListByPaymentTypeCriteriaType extends AbstractStructBase
      * @param string[] $orgUnitName
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListByPaymentTypeCriteriaType
      */
-    public function setOrgUnitName(array $orgUnitName = []): self
+    public function setOrgUnitName(?array $orgUnitName = null): self
     {
         // validation for constraint: array
-        if ('' !== ($orgUnitNameArrayErrorMessage = self::validateOrgUnitNameForArrayConstraintsFromSetOrgUnitName($orgUnitName))) {
+        if ('' !== ($orgUnitNameArrayErrorMessage = self::validateOrgUnitNameForArrayConstraintFromSetOrgUnitName($orgUnitName))) {
             throw new InvalidArgumentException($orgUnitNameArrayErrorMessage, __LINE__);
         }
         $this->orgUnitName = $orgUnitName;

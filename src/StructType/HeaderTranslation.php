@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for HeaderTranslation StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class HeaderTranslation extends AbstractStructBase
 {
     /**

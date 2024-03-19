@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListByProductTypeResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListByProductTypeResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class SalesListByProductTypeResponse extends AbstractStructBase
      * - ref: MidocoSalesListsByProductType
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType[]
      */
-    protected array $MidocoSalesListsByProductType = [];
+    protected ?array $MidocoSalesListsByProductType = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class SalesListByProductTypeResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType $salesListsByProductTypeSums
      */
-    public function __construct(array $midocoSalesListsByProductType = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType $salesListsByProductTypeSums = null)
+    public function __construct(?array $midocoSalesListsByProductType = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType $salesListsByProductTypeSums = null)
     {
         $this
             ->setMidocoSalesListsByProductType($midocoSalesListsByProductType)
@@ -54,18 +55,22 @@ class SalesListByProductTypeResponse extends AbstractStructBase
      * Get MidocoSalesListsByProductType value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType[]
      */
-    public function getMidocoSalesListsByProductType(): array
+    public function getMidocoSalesListsByProductType(): ?array
     {
         return $this->MidocoSalesListsByProductType;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSalesListsByProductType method
+     * This method is responsible for validating the value(s) passed to the setMidocoSalesListsByProductType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSalesListsByProductType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSalesListsByProductTypeForArrayConstraintsFromSetMidocoSalesListsByProductType(array $values = []): string
+    public static function validateMidocoSalesListsByProductTypeForArrayConstraintFromSetMidocoSalesListsByProductType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListByProductTypeResponseMidocoSalesListsByProductTypeItem) {
@@ -87,10 +92,10 @@ class SalesListByProductTypeResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListsByProductTypeType[] $midocoSalesListsByProductType
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListByProductTypeResponse
      */
-    public function setMidocoSalesListsByProductType(array $midocoSalesListsByProductType = []): self
+    public function setMidocoSalesListsByProductType(?array $midocoSalesListsByProductType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSalesListsByProductTypeArrayErrorMessage = self::validateMidocoSalesListsByProductTypeForArrayConstraintsFromSetMidocoSalesListsByProductType($midocoSalesListsByProductType))) {
+        if ('' !== ($midocoSalesListsByProductTypeArrayErrorMessage = self::validateMidocoSalesListsByProductTypeForArrayConstraintFromSetMidocoSalesListsByProductType($midocoSalesListsByProductType))) {
             throw new InvalidArgumentException($midocoSalesListsByProductTypeArrayErrorMessage, __LINE__);
         }
         $this->MidocoSalesListsByProductType = $midocoSalesListsByProductType;

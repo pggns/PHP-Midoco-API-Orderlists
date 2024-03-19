@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SalesListBySupplierAndMonthRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SalesListBySupplierAndMonthRequest extends AbstractStructBase
 {
     /**
@@ -39,7 +40,7 @@ class SalesListBySupplierAndMonthRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $excludedUnitName = [];
+    protected ?array $excludedUnitName = null;
     /**
      * Constructor method for SalesListBySupplierAndMonthRequest
      * @uses SalesListBySupplierAndMonthRequest::setMidocoSalesListBySupplierCriteria()
@@ -51,7 +52,7 @@ class SalesListBySupplierAndMonthRequest extends AbstractStructBase
      * @param int $maxReturned
      * @param string[] $excludedUnitName
      */
-    public function __construct(?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListBySupplierCriteriaType $midocoSalesListBySupplierCriteria = null, ?string $directDebitor = null, ?int $maxReturned = null, array $excludedUnitName = [])
+    public function __construct(?\Pggns\MidocoApi\Orderlists\StructType\MidocoSalesListBySupplierCriteriaType $midocoSalesListBySupplierCriteria = null, ?string $directDebitor = null, ?int $maxReturned = null, ?array $excludedUnitName = null)
     {
         $this
             ->setMidocoSalesListBySupplierCriteria($midocoSalesListBySupplierCriteria)
@@ -128,18 +129,22 @@ class SalesListBySupplierAndMonthRequest extends AbstractStructBase
      * Get excludedUnitName value
      * @return string[]
      */
-    public function getExcludedUnitName(): array
+    public function getExcludedUnitName(): ?array
     {
         return $this->excludedUnitName;
     }
     /**
-     * This method is responsible for validating the values passed to the setExcludedUnitName method
+     * This method is responsible for validating the value(s) passed to the setExcludedUnitName method
      * This method is willingly generated in order to preserve the one-line inline validation within the setExcludedUnitName method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateExcludedUnitNameForArrayConstraintsFromSetExcludedUnitName(array $values = []): string
+    public static function validateExcludedUnitNameForArrayConstraintFromSetExcludedUnitName(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $salesListBySupplierAndMonthRequestExcludedUnitNameItem) {
@@ -161,10 +166,10 @@ class SalesListBySupplierAndMonthRequest extends AbstractStructBase
      * @param string[] $excludedUnitName
      * @return \Pggns\MidocoApi\Orderlists\StructType\SalesListBySupplierAndMonthRequest
      */
-    public function setExcludedUnitName(array $excludedUnitName = []): self
+    public function setExcludedUnitName(?array $excludedUnitName = null): self
     {
         // validation for constraint: array
-        if ('' !== ($excludedUnitNameArrayErrorMessage = self::validateExcludedUnitNameForArrayConstraintsFromSetExcludedUnitName($excludedUnitName))) {
+        if ('' !== ($excludedUnitNameArrayErrorMessage = self::validateExcludedUnitNameForArrayConstraintFromSetExcludedUnitName($excludedUnitName))) {
             throw new InvalidArgumentException($excludedUnitNameArrayErrorMessage, __LINE__);
         }
         $this->excludedUnitName = $excludedUnitName;

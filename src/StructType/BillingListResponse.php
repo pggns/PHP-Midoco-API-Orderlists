@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BillingListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BillingListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class BillingListResponse extends AbstractStructBase
      * - ref: MidocoBillingListResults
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType[]
      */
-    protected array $MidocoBillingListResults = [];
+    protected ?array $MidocoBillingListResults = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class BillingListResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType $sums
      */
-    public function __construct(array $midocoBillingListResults = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType $sums = null)
+    public function __construct(?array $midocoBillingListResults = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType $sums = null)
     {
         $this
             ->setMidocoBillingListResults($midocoBillingListResults)
@@ -54,18 +55,22 @@ class BillingListResponse extends AbstractStructBase
      * Get MidocoBillingListResults value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType[]
      */
-    public function getMidocoBillingListResults(): array
+    public function getMidocoBillingListResults(): ?array
     {
         return $this->MidocoBillingListResults;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBillingListResults method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingListResults method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingListResults method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBillingListResultsForArrayConstraintsFromSetMidocoBillingListResults(array $values = []): string
+    public static function validateMidocoBillingListResultsForArrayConstraintFromSetMidocoBillingListResults(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $billingListResponseMidocoBillingListResultsItem) {
@@ -87,10 +92,10 @@ class BillingListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBillingListResultsType[] $midocoBillingListResults
      * @return \Pggns\MidocoApi\Orderlists\StructType\BillingListResponse
      */
-    public function setMidocoBillingListResults(array $midocoBillingListResults = []): self
+    public function setMidocoBillingListResults(?array $midocoBillingListResults = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBillingListResultsArrayErrorMessage = self::validateMidocoBillingListResultsForArrayConstraintsFromSetMidocoBillingListResults($midocoBillingListResults))) {
+        if ('' !== ($midocoBillingListResultsArrayErrorMessage = self::validateMidocoBillingListResultsForArrayConstraintFromSetMidocoBillingListResults($midocoBillingListResults))) {
             throw new InvalidArgumentException($midocoBillingListResultsArrayErrorMessage, __LINE__);
         }
         $this->MidocoBillingListResults = $midocoBillingListResults;

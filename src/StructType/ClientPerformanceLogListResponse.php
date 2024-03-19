@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ClientPerformanceLogListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ClientPerformanceLogListResponse extends AbstractStructBase
 {
     /**
@@ -20,7 +21,7 @@ class ClientPerformanceLogListResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogInfoType[]
      */
-    protected array $ClientPerformanceLogInfo = [];
+    protected ?array $ClientPerformanceLogInfo = null;
     /**
      * The ClientPerformanceLogSumInfo
      * @var \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogSumInfoType|null
@@ -33,7 +34,7 @@ class ClientPerformanceLogListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogInfoType[] $clientPerformanceLogInfo
      * @param \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogSumInfoType $clientPerformanceLogSumInfo
      */
-    public function __construct(array $clientPerformanceLogInfo = [], ?\Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogSumInfoType $clientPerformanceLogSumInfo = null)
+    public function __construct(?array $clientPerformanceLogInfo = null, ?\Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogSumInfoType $clientPerformanceLogSumInfo = null)
     {
         $this
             ->setClientPerformanceLogInfo($clientPerformanceLogInfo)
@@ -43,18 +44,22 @@ class ClientPerformanceLogListResponse extends AbstractStructBase
      * Get ClientPerformanceLogInfo value
      * @return \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogInfoType[]
      */
-    public function getClientPerformanceLogInfo(): array
+    public function getClientPerformanceLogInfo(): ?array
     {
         return $this->ClientPerformanceLogInfo;
     }
     /**
-     * This method is responsible for validating the values passed to the setClientPerformanceLogInfo method
+     * This method is responsible for validating the value(s) passed to the setClientPerformanceLogInfo method
      * This method is willingly generated in order to preserve the one-line inline validation within the setClientPerformanceLogInfo method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateClientPerformanceLogInfoForArrayConstraintsFromSetClientPerformanceLogInfo(array $values = []): string
+    public static function validateClientPerformanceLogInfoForArrayConstraintFromSetClientPerformanceLogInfo(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $clientPerformanceLogListResponseClientPerformanceLogInfoItem) {
@@ -76,10 +81,10 @@ class ClientPerformanceLogListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogInfoType[] $clientPerformanceLogInfo
      * @return \Pggns\MidocoApi\Orderlists\StructType\ClientPerformanceLogListResponse
      */
-    public function setClientPerformanceLogInfo(array $clientPerformanceLogInfo = []): self
+    public function setClientPerformanceLogInfo(?array $clientPerformanceLogInfo = null): self
     {
         // validation for constraint: array
-        if ('' !== ($clientPerformanceLogInfoArrayErrorMessage = self::validateClientPerformanceLogInfoForArrayConstraintsFromSetClientPerformanceLogInfo($clientPerformanceLogInfo))) {
+        if ('' !== ($clientPerformanceLogInfoArrayErrorMessage = self::validateClientPerformanceLogInfoForArrayConstraintFromSetClientPerformanceLogInfo($clientPerformanceLogInfo))) {
             throw new InvalidArgumentException($clientPerformanceLogInfoArrayErrorMessage, __LINE__);
         }
         $this->ClientPerformanceLogInfo = $clientPerformanceLogInfo;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for BirthdayListResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class BirthdayListResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class BirthdayListResponse extends AbstractStructBase
      * - ref: MidocoBirthdayList
      * @var \Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType[]
      */
-    protected array $MidocoBirthdayList = [];
+    protected ?array $MidocoBirthdayList = null;
     /**
      * The noOfResults
      * Meta information extracted from the WSDL
@@ -43,7 +44,7 @@ class BirthdayListResponse extends AbstractStructBase
      * @param int $noOfResults
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType $midocoBirthdayListSums
      */
-    public function __construct(array $midocoBirthdayList = [], ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType $midocoBirthdayListSums = null)
+    public function __construct(?array $midocoBirthdayList = null, ?int $noOfResults = null, ?\Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType $midocoBirthdayListSums = null)
     {
         $this
             ->setMidocoBirthdayList($midocoBirthdayList)
@@ -54,18 +55,22 @@ class BirthdayListResponse extends AbstractStructBase
      * Get MidocoBirthdayList value
      * @return \Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType[]
      */
-    public function getMidocoBirthdayList(): array
+    public function getMidocoBirthdayList(): ?array
     {
         return $this->MidocoBirthdayList;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoBirthdayList method
+     * This method is responsible for validating the value(s) passed to the setMidocoBirthdayList method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBirthdayList method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoBirthdayListForArrayConstraintsFromSetMidocoBirthdayList(array $values = []): string
+    public static function validateMidocoBirthdayListForArrayConstraintFromSetMidocoBirthdayList(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $birthdayListResponseMidocoBirthdayListItem) {
@@ -87,10 +92,10 @@ class BirthdayListResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Orderlists\StructType\MidocoBirthdayListType[] $midocoBirthdayList
      * @return \Pggns\MidocoApi\Orderlists\StructType\BirthdayListResponse
      */
-    public function setMidocoBirthdayList(array $midocoBirthdayList = []): self
+    public function setMidocoBirthdayList(?array $midocoBirthdayList = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoBirthdayListArrayErrorMessage = self::validateMidocoBirthdayListForArrayConstraintsFromSetMidocoBirthdayList($midocoBirthdayList))) {
+        if ('' !== ($midocoBirthdayListArrayErrorMessage = self::validateMidocoBirthdayListForArrayConstraintFromSetMidocoBirthdayList($midocoBirthdayList))) {
             throw new InvalidArgumentException($midocoBirthdayListArrayErrorMessage, __LINE__);
         }
         $this->MidocoBirthdayList = $midocoBirthdayList;

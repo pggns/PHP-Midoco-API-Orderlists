@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetInfoForCustomerRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetInfoForCustomerRequest extends AbstractStructBase
 {
     /**
@@ -62,7 +63,7 @@ class GetInfoForCustomerRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $unitName = [];
+    protected ?array $unitName = null;
     /**
      * Constructor method for GetInfoForCustomerRequest
      * @uses GetInfoForCustomerRequest::setCustomerId()
@@ -80,7 +81,7 @@ class GetInfoForCustomerRequest extends AbstractStructBase
      * @param int $employee
      * @param string[] $unitName
      */
-    public function __construct(?int $customerId = null, ?string $travelStart = null, ?string $travelEnd = null, ?string $createdStart = null, ?string $createdEnd = null, ?int $employee = null, array $unitName = [])
+    public function __construct(?int $customerId = null, ?string $travelStart = null, ?string $travelEnd = null, ?string $createdStart = null, ?string $createdEnd = null, ?int $employee = null, ?array $unitName = null)
     {
         $this
             ->setCustomerId($customerId)
@@ -233,18 +234,22 @@ class GetInfoForCustomerRequest extends AbstractStructBase
      * Get unitName value
      * @return string[]
      */
-    public function getUnitName(): array
+    public function getUnitName(): ?array
     {
         return $this->unitName;
     }
     /**
-     * This method is responsible for validating the values passed to the setUnitName method
+     * This method is responsible for validating the value(s) passed to the setUnitName method
      * This method is willingly generated in order to preserve the one-line inline validation within the setUnitName method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateUnitNameForArrayConstraintsFromSetUnitName(array $values = []): string
+    public static function validateUnitNameForArrayConstraintFromSetUnitName(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getInfoForCustomerRequestUnitNameItem) {
@@ -266,10 +271,10 @@ class GetInfoForCustomerRequest extends AbstractStructBase
      * @param string[] $unitName
      * @return \Pggns\MidocoApi\Orderlists\StructType\GetInfoForCustomerRequest
      */
-    public function setUnitName(array $unitName = []): self
+    public function setUnitName(?array $unitName = null): self
     {
         // validation for constraint: array
-        if ('' !== ($unitNameArrayErrorMessage = self::validateUnitNameForArrayConstraintsFromSetUnitName($unitName))) {
+        if ('' !== ($unitNameArrayErrorMessage = self::validateUnitNameForArrayConstraintFromSetUnitName($unitName))) {
             throw new InvalidArgumentException($unitNameArrayErrorMessage, __LINE__);
         }
         $this->unitName = $unitName;
